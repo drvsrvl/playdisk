@@ -18,7 +18,14 @@ class CreateCancionsTable extends Migration
             $table->string('nome');
             $table->string('artistas');
             $table->string('duracion');
+            $table->bigInteger('produto_id')->unsigned();
+            $table->integer('numero_produto');
             $table->bigInteger('reproduccions');
+            $table->foreign('produto_id')
+                ->references('id')
+                ->on('produtos')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

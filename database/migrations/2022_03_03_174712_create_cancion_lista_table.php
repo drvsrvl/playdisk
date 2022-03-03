@@ -27,6 +27,7 @@ class CreateCancionListaTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->date('data');
+            $table->bigInteger('posicion');
             $table->primary(['cancion_id', 'lista_id']);
             $table->timestamps();
         });
