@@ -17,7 +17,6 @@
                         <a href="/album">Álbum</a>
                         <a href="/perfil">Perfil</a>
                         <a href="/lista">Lista</a>
-</span>
                 </div>
             </ul>
         </div>
@@ -26,10 +25,14 @@
         <div class="buscador">
             <input type="text" placeholder="Busca aquí">
         </div>
-        
+        @if(!Auth::user())
         <div class="login">
-            <a href=""><button class="login">Login</button></a>
+            <a href="/login"><button class="login">Login</button></a>
         </div>
+        @else
+        {{Auth::user()->perfil->login}}
+        
+        @endif
     </div>
     <!-- No caso de que estea iniciada a sesión faríamos algo co perfil
     ...

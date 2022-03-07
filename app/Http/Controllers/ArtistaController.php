@@ -44,9 +44,10 @@ class ArtistaController extends Controller
      * @param  \App\Models\Artista  $artista
      * @return \Illuminate\Http\Response
      */
-    public function show(Artista $artista)
+    public function show($id)
     {
-        //
+        $artista = Artista::find($id);
+        return view('artista', ['artista' => $artista]);
     }
 
     /**

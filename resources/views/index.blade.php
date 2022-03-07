@@ -14,7 +14,7 @@
         <span class="subtituloindexesquerda">
             Únete á nosa comunidade e participa na conversa
         </span><br><br>
-        <button class="botonindexesquerda">Comezar</button>
+        <a href="/register"><button class="botonindexesquerda">Comezar</button></a>
     </div>
     <div class="svgdereita">
 
@@ -45,7 +45,9 @@
     <i class="bi bi-tags"></i> XÉNEROS
     </div>
     <div class="indexxeneros my-4">
-        <a href=""><button class="xenero blanco">POP</button></a>
+       @foreach($xeneros as $xenero)
+            <a class="blanco" href="/xenero/{{$xenero->id}}"><button class="xenero blanco"><?php echo strtoupper($xenero->nome); ?></button></a>
+        @endforeach
     </div>
 </div>
 
@@ -53,15 +55,21 @@
 <div class="tituloindexnovidades"> 
 <i class="bi bi-plus-circle"></i> NOVIDADES
     </div>
-    <div class="novidade" id="novidade1">
-        <div class="novidadeesquerda">
-            <div class="posicion">01</div>
-            <!--<img class="trendingportada" src="img/vibras.png"></img> -->
+    @for ($i = 0; $i <= 0; $i++) 
+        
+        <div class="novidade" id="novidade{{$ultimosProdutos[$i]->id}}" onclick="link('album',{{$ultimosProdutos[$i]->id}})">
+            <div class="novidadeesquerda">
+                <div class="posicion">0{{$i+1}}</div>
+                <!--<img class="trendingportada" src="img/vibras.png"></img> -->
+            </div>
+            <div class="novidadetexto">
+                <div class="novidadetitulo">{{$ultimosProdutos[$i]->nome}}</div>
+                @foreach($ultimosProdutos[$i]->artistas as $artista)
+                    <a href="/artista/{{$artista->id}}"><div class="novidadeartista">{{$artista->nome}}</div></a>
+                @endforeach
+            </div>
         </div>
-        <div class="novidadetexto">
-            <div class="novidadetitulo">Vibras</div>
-            <div class="novidadeartista">J Balvin</div>
-        </div>
-    </div>
+       
+    @endfor
 </div>
 @stop

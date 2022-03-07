@@ -10,7 +10,7 @@ class Lista extends Model
 {
     use HasFactory;
     
-    public function perfils() {
+    public function perfil() {
         return $this->belongsTo(Perfil::class);
     }
     

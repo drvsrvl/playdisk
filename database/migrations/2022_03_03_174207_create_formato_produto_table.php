@@ -16,6 +16,7 @@ class CreateFormatoProdutoTable extends Migration
         Schema::create('formato_produto', function (Blueprint $table) {
             $table->bigInteger('formato_id')->unsigned();
             $table->bigInteger('produto_id')->unsigned();
+            $table->double('prezo');
             $table->foreign('formato_id')
                 ->references('id')
                 ->on('formatos')

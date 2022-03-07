@@ -18,7 +18,13 @@ class CreatePerfilsTable extends Migration
             $table->string('login');
             $table->string('rol')->default('user');
             $table->tinyText('descripcion');
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

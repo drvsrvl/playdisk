@@ -44,9 +44,10 @@ class PerfilController extends Controller
      * @param  \App\Models\Perfil  $perfil
      * @return \Illuminate\Http\Response
      */
-    public function show(Perfil $perfil)
+    public function show($id)
     {
-        //
+        $perfil = Perfil::find($id);
+        return view('perfil', ['perfil' => $perfil]);
     }
 
     /**

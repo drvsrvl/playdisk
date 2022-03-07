@@ -1,9 +1,15 @@
+@extends('layouts.master')
 <x-guest-layout>
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+
+@section('title', 'lista')
+@section('contido')
+         <x-slot name="logo">
+            <div class="identidade"
+                <a href="/">
+                    <h1>PLAYDISK</h1>
+                </a>
+            </div>
         </x-slot>
 
         <!-- Validation Errors -->

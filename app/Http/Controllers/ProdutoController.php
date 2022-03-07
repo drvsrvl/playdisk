@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use App\Models\Xenero;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ProdutoController extends Controller
 {
@@ -14,7 +17,9 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        //
+        $produtos = Produto::all();
+        $xeneros = Xenero::all();
+        return view('catalogo', ['produtos' => $produtos, 'xeneros' => $xeneros]);
     }
 
     /**
@@ -44,9 +49,16 @@ class ProdutoController extends Controller
      * @param  \App\Models\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function show(Produto $produto)
+    public function show($id)
     {
-        //
+        $produto = Produto::find($id);
+        return view('album', ['produto' => $produto]);
+    }
+    
+    public function inicio() {
+        $ultimosProdutos = Produto::orderby('data','desc')->get();
+        $xeneros = Xenero::all();
+        return view('index', ['ultimosProdutos' => $ultimosProdutos, 'xeneros' => $xeneros]);
     }
 
     /**

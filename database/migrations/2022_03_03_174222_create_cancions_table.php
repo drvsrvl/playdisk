@@ -20,6 +20,7 @@ class CreateCancionsTable extends Migration
             $table->string('duracion');
             $table->bigInteger('produto_id')->unsigned();
             $table->integer('numero_produto');
+            $table->string('arquivo');
             $table->bigInteger('reproduccions');
             $table->foreign('produto_id')
                 ->references('id')

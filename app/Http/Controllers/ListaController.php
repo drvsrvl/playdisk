@@ -44,9 +44,10 @@ class ListaController extends Controller
      * @param  \App\Models\Lista  $lista
      * @return \Illuminate\Http\Response
      */
-    public function show(Lista $lista)
+    public function show($id)
     {
-        //
+        $lista = Lista::find($id);
+        return view('lista', ['lista' => $lista]);
     }
 
     /**

@@ -76,3 +76,7 @@ function play(id) {
   document.getElementById('simPlay' + id).classList.remove('show');
   document.getElementById('numCancion' + id).classList.toggle('show');
   }
+  
+function link(seccion, id) {
+    window.location.href = "/" + seccion + "/" + id;
+}

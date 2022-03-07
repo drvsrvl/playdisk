@@ -10,6 +10,6 @@ class Artista extends Model
     use HasFactory;
     
     public function produtos() {
-        return $this->belongsToMany(Produtos::class);
+        return $this->belongsToMany(Produto::class);
     }
 }
