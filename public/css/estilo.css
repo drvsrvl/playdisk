@@ -631,7 +631,7 @@ div.corpocatalogo {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: linear-gradient(180deg, rgb(255, 255, 255) 0%, rgb(167, 142, 212) 70%, rgb(155, 133, 214) 100%);
+    background: linear-gradient(180deg, rgb(197, 202, 231) 0%, rgb(53, 52, 107) 70%, rgb(0, 0, 0) 100%);
 }
 
 div.filtrocatalogo {
@@ -887,8 +887,62 @@ div.tituloplaylistperfil {
 }
 
 
+/* Estilos de lista */
 
+div.contidolista {
+    width: 70%;
+    background: linear-gradient(30deg, rgb(14, 14, 14) 0%, rgb(36, 36, 36) 100%);
+    margin: 20px auto;
+    border-radius: 20px;
+    color:white;
+}
 
+div.infolista {
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    padding:20px;
+}
+
+hr {
+    color: grey;
+}
+
+img.imglista {
+    border-radius: 10px;
+}
+
+div.cancionslista {
+    min-height: 200px;
+}
+
+div.playlistcancion {
+    margin: 0 auto;
+    width:80%;
+    padding:10px;
+    height: 80px;
+    padding:10px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(30deg, rgb(29, 29, 29) 0%, rgb(12, 12, 12) 100%);
+    transition: 0.3s all ease;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 24px;
+}
+
+div.playlistcancion:hover {
+    background: linear-gradient(300deg, rgb(29, 29, 29) 0%, rgb(22, 22, 22) 100%);
+    width: 81%;
+    height:82px;
+    cursor: pointer;
+}
+
+h3.titulolista {
+    font-weight: 600;
+}
 /* Estilos do pé de páxina */
 
 div.pepaxina {

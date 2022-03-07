@@ -19,7 +19,7 @@
                         <h2 id="simPlay1" class="simPlay">▶︎</h2>
                     </span>
                     <span class="medio">
-                        <span class="titulocancion">Mi Gente</span>
+                        <span class="titulocancion">Vibras</span>
                         <a href=""><span class="autorcancion">J Balvin</span></a>
                     </span>
                     <div class="duracion">3:13</div>
@@ -65,11 +65,13 @@ En una entrevista con Ebro Darden para Beats 1 Radio en Apple Music en abril de 
         </div>
     </div>
 </div>
-<div class="comentarios">
-    <form method="post">
-        <textarea class="comentario" placeholder="Escrebe aquí o teu comentario..."></textarea>
-        <button type="submit" class="enviar">Enviar</button>
-    </form>
+<div style="width:100%;background-color:white">
+    <div class="comentarios">
+        <form method="post">
+            <textarea class="comentario" placeholder="Escrebe aquí o teu comentario..."></textarea>
+            <button type="submit" class="enviar">Enviar</button>
+        </form>
+    </div>
 </div>
 <script>
     $(window).ready(function(){

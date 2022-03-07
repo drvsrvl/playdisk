@@ -33,3 +33,8 @@ Route::get('/perfil', function () {
     return view('perfil');
 });
 
+Route::get('/lista', function () {
+    return view('lista');
+});
+
+
