@@ -922,9 +922,9 @@ div.playlistcancion {
     margin: 0 auto;
     width:80%;
     padding:10px;
-    height: 80px;
+    height: 60px;
     padding:10px;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: white;
     display: flex;
     justify-content: space-between;
@@ -936,7 +936,7 @@ div.playlistcancion {
 div.playlistcancion:hover {
     background: linear-gradient(300deg, rgb(29, 29, 29) 0%, rgb(22, 22, 22) 100%);
     width: 81%;
-    height:82px;
+    height:62px;
     cursor: pointer;
 }
 

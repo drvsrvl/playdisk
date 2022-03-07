@@ -11,11 +11,12 @@
             <ul>
                 <a href="/catalogo"><li>Catálogo</li></a>
                 <div class="dropdown">
-                    <li>Catálogo <i class="bi bi-caret-down-fill"></i></li>
+                    <li>Vistas <i class="bi bi-caret-down-fill"></i></li>
                     <div class="dropdownmenu">
                         <a href="/artista">Artista</a>
                         <a href="/album">Álbum</a>
-                        <a href="">Xénero</a>
+                        <a href="/perfil">Perfil</a>
+                        <a href="/lista">Lista</a>
 </span>
                 </div>
             </ul>

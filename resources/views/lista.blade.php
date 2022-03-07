@@ -8,8 +8,11 @@
         <img src="img/vibras.jpg" alt="" class="imglista" height="100%"></img>
         <div style="display:flex;flex-direction:column;justify-content:start" class="mx-4">
             <h3 class="titulolista">Lista #1</h3>
-            <div style="display:flex;justify-items:start">
-                <span class="autorlista">@autor</span> ・ <span class="numcancions">20 cancións</span>
+            <div style="display:flex;justify-items:start; color:lightgrey">
+                <span class="autorlista">@autor</span> ・ <span class="numcancions">20 cancións</span> ・ <span class="duracionlista">22 minutos</span>
+            </div>
+            <div class="descripcionlista mt-1" style="color:lightgrey">
+                Unha pequena descripción para a lista de máximo 150 caracteres.
             </div>
         </div>
     </div>
