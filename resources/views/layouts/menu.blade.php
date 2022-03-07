@@ -9,12 +9,12 @@
         </div>
         <div class="seccions">
             <ul>
-                <a href=""><li>Perfís</li></a>
+                <a href="/catalogo"><li>Catálogo</li></a>
                 <div class="dropdown">
                     <li>Catálogo <i class="bi bi-caret-down-fill"></i></li>
                     <div class="dropdownmenu">
-                        <a href="">Artista</a>
-                        <a href="">Álbum</a>
+                        <a href="/artista">Artista</a>
+                        <a href="/album">Álbum</a>
                         <a href="">Xénero</a>
 </span>
                 </div>

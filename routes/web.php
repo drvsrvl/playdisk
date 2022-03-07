@@ -16,3 +16,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/album', function () {
+    return view('album');
+});
+
+Route::get('/artista', function () {
+    return view('artista');
+});
+
+Route::get('/catalogo', function () {
+    return view('catalogo');
+});
+
+Route::get('/perfil', function () {
+    return view('perfil');
+});
+

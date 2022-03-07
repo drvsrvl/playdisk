@@ -1,6 +1,13 @@
 /* Estilos xenéricos */
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One&display=swap');
+
+html {
+    background-color: black;
+}
+
 body {
     margin-top: 75px;
+    background-color: white;
 }
 
 ::selection {
@@ -130,6 +137,9 @@ div.dereita {
 
 
 div.dereita input {
+    appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
     background-color: white;
     border-radius: 20px;
     border: 1px solid black;
@@ -142,6 +152,232 @@ div.duracion {
     margin-top: 17px;
 }
 
+/* Estilos da vista de index */
+
+div.indexportada {
+    width: 100%;
+    height: 50vh;
+    border-bottom: 1px solid black;
+    background-color: beige;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgb(149,182,107);
+    background: linear-gradient(197deg, rgba(149,182,107,1) 0%, rgba(253,255,254,1) 100%);
+
+}
+
+div.indexesquerda {
+    width: 65%;
+    padding: 25px;
+    height: 100%;
+    padding-top: 50px;
+}
+
+div.tituloindexesquerda {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 0.9em;
+}
+
+
+span.subtituloindexesquerda {
+    font-size: 20px;
+}
+
+button.botonindexesquerda {
+    padding: 10px;
+    background-color:white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 30px;
+    box-shadow: #422800 4px 4px 0 0;
+    font-size:20px;
+    font-weight: 500;
+}
+
+button.botonindexesquerda:hover {
+    background-color:rgba(149,182,107,1);
+}
+
+div.svgdereita {
+    width: 30%;
+    float:left;
+    
+}
+
+div.indextrending {
+    width: 100%;
+    padding: 25px;
+}
+
+div.tituloindextrending {
+
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+div.trend {
+    margin-top: 10px;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    
+}
+
+div.trend div.posicion {
+    font-size: 40px;
+    float:left;
+    color: lightgray;
+    font-weight: 600;
+    transition: 0.2s all ease;
+}
+
+div.trend div.trendingtexto {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+div.trend img.trendingportada {
+    width: 65px;
+    float:left;
+    margin-left: 10px;
+    
+}
+
+div.trend div.trendingtitulo {
+    font-size: 25px;
+}
+
+div.trend div.artista {
+
+}
+
+div.trend:hover {
+    cursor: pointer;
+    /*background: linear-gradient(90deg, rgba(154,62,255,1) 0%, rgba(255,255,255,1) 100%);*/
+}
+
+div.trend:hover div.posicion {
+    color: black;
+}
+
+    div.indexbuscador {
+        width: 100%;
+        height: 30vh;
+        background: rgb(107,182,182);
+        background: linear-gradient(180deg, rgb(255, 255, 255) 0%, rgb(118, 124, 209) 100%);
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    input.indexbuscador {
+        appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+        width: 70%;
+        border-radius: 30px;
+        padding: 20px;
+        border: 1px solid black;
+        outline: none;
+        font-size: 25px;
+        color: white;
+        transition: 0.2s all ease;
+        background-color: black;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 15px;
+        text-align: center;
+    }
+
+    input.indexbuscador:hover {
+        
+    }
+    
+    input.indexbuscador::placeholder {
+        color: rgb(170, 169, 169);
+    }
+
+
+
+    div.indextags {
+        width:100%;
+      
+        background: linear-gradient(180deg, rgb(118, 124, 209) 0%, black 100%);
+        padding:25px;
+    }
+    div.tituloindextags {
+        color: white;
+        width: 100%;
+        font-size: 1.2em;
+        font-weight: 700;
+    }
+
+    div.novidades {
+        width:100%;
+        height:30vh;
+        background-color: black;
+        padding:25px;
+    }
+
+    div.tituloindexnovidades {
+        color: white;
+        width: 100%;
+        font-size: 1.2em;
+        font-weight: 700;
+    }
+
+    div.novidade {
+        margin-top: 10px;
+        width: 30%;
+        border-top: 2px solid white;
+        border-left: 2px solid white;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-radius: 10px;
+        transition: 0.2s ease-in;
+    }
+    
+    div.novidade div.posicion {
+        font-size: 40px;
+        float:left;
+        color: lightgray;
+        font-weight: 600;
+    }
+    
+    div.novidade div.novidadetexto {
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 10px;
+        color:white;
+    }
+    
+    div.novidade img.novidadeportada {
+        width: 65px;
+        float:left;
+        margin-left: 10px;
+        
+    }
+    
+    div.novidade div.novidadetitulo {
+        font-size: 25px;
+    }
+    
+    div.novidade div.artista {
+    
+    }
+    
+    div.novidade:hover {
+        cursor: pointer;
+        background: rgb(211, 211, 211);
+        /*background: linear-gradient(90deg, rgba(154,62,255,1) 0%, rgba(255,255,255,1) 100%);*/
+    }
+    
 /* Estilos da vista de álbum */
 
 div.infoalbum {
@@ -255,8 +491,6 @@ span.autorcancion {
     font-size: 0.8em;
 }
 
-
-
 div.albumtexto a {
     color:black;
     text-decoration: none;
@@ -318,6 +552,12 @@ div.albumtexto a:hover {
         font-weight: 500;
     }
 
+    button.xenero.blanco {
+        background-color: black;
+        color:white;
+        border-color: white;
+    }
+
     table.prezo {
         width: 100%;
         text-align: center;
@@ -342,6 +582,7 @@ div.albumtexto a:hover {
 /*Estilos de comentarios*/
 div.comentarios {
     margin-top: 25px;
+    padding-bottom: 20px;
     padding-top: 45px;
     width: 60%;
     margin:0 auto;
@@ -357,7 +598,7 @@ div.comentarios button.enviar {
     width:100%;
     background-color: white;
     color:black;
-  
+    /*box-shadow: #422800 4px 4px 0 0;*/
     border: 1px solid black;
 }
 
@@ -366,11 +607,292 @@ div.comentarios button.enviar:hover {
     color:white;
 }
 
+/* Estilos de catálogo */
+
+div.cabeceiracatalogo {
+    width: 100%;
+    height: 15vh;
+    background-color: white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+h2.titulocabeceiracatalogo {
+    font-size: 4em;
+    color: black;
+    text-shadow: rgba(160, 160, 160, 0.2) 0px 4px 34px;
+}
+
+div.corpocatalogo {
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(180deg, rgb(255, 255, 255) 0%, rgb(167, 142, 212) 70%, rgb(155, 133, 214) 100%);
+}
+
+div.filtrocatalogo {
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0 20px 0;
+}
+
+div.filtrocatalogo h3 {
+    font-size: 1.5em;
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+
+select.seleccionfiltro {
+    appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+    border-radius: 0px;
+    height: 35px;
+    font-size: 1.3em;
+    border: none;
+    background:transparent;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+select.seleccionfiltro:hover {
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+div.divcorpocatalogo {
+    width:100%;
+    display:flex;
+    justify-content: center;
+}
+
+div.albumescatalogo {
+    width: 60%;
+}
+
+div.albumescatalogo div.fichaalbum {
+    width:20%;
+}
+
+div.etiquetascatalogo {
+    padding:20px;
+    width:20%;
+}
+
+
+/* Estilos de artista */
+
+div.artistainfo {
+    width: 100%;
+    height: 30vh;
+    border-bottom: 1px solid black;
+    background: rgb(255,255,255);
+    background: linear-gradient(200deg, rgba(255,255,255,1) 20%, rgb(202, 202, 202) 100%);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img.artistafoto {
+    height: 80%;
+    border-radius: 50%;
+    background-position: 50%;
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 24px;
+}
+
+h3.artistanome {
+    font-size: 80px;
+    color: black;
+    font-weight: 700;
+    /*-webkit-text-stroke: 1px black;*/
+    text-shadow: rgba(44, 44, 44, 0.35) 0px 0px 15px;
+}
+
+div.informacionartista {
+    margin-top: -20px;
+    padding-top: 20px;
+    margin-bottom: -10px;
+    width: 100%;
+    overflow: auto;
+    border-bottom: 1px solid black;
+}
+
+div.descripcionartista {
+    float:left;
+    width: 50%;
+    margin:0 15px 0 10px;
+    border-right: 1px solid black;
+    text-align: justify;
+}
+
+div.albumesartista {
+    float:left;
+    width:45%;
+}
+
+div.divfichas {
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.fichaalbum {
+    width:30%;
+    padding: 15px 10px 15px 10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, rgb(66, 66, 66) 0%, rgb(0, 0, 0) 100%);
+    color:white;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 30px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+div.fichaalbum:hover {
+    background: linear-gradient(220deg, rgb(66, 66, 66) 0%, rgb(0, 0, 0) 100%);
+}
+
+img.fichaalbum {
+    width: 100px;
+    border-radius: 10px;
+}
+
+div.tituloficha {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+div.artistaficha {
+
+}
+
+/* Estilos do perfil */
+
+div.perfilinfo {
+    width: 100%;
+    height: 40vh;
+    border-bottom: 1px solid black;
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgb(153, 155, 190) 0%, rgb(17, 10, 92) 100%);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+img.perfilfoto {
+    height: 60%;
+    border-radius: 50%;
+    border: 1.5px solid black;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 24px;
+}
+
+h3.perfilnome {
+    font-size:40px;
+    color: black ;
+    font-weight: 600;
+    /*-webkit-text-stroke: 1px black;*/
+    text-shadow: rgba(85, 85, 85, 0.35) 0px 0px 15px;
+}
+
+div.informacionperfil {
+
+    padding-top: -20px;
+    margin-bottom: -10px;
+    width: 100%;
+    overflow: auto;
+    border-bottom: 1px solid black;
+    background: linear-gradient(180deg, rgb(17, 10, 92) 20%, rgb(0, 0, 0) 100%);
+}
+
+div.descripcionperfil {
+    width: 80%;
+    margin:0 15px 0 10px;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-top: none;
+    text-align: justify;
+    background-color: white;
+}
+
+div.listasperfil {
+    width:80%;
+    color: white;
+    margin:0 30px 0 30px;
+    margin: 0 auto;
+    background-color: black;
+    
+    
+}
+
+div.divlistas {
+
+}
+
+div.playlistperfil {
+    margin: 0 auto;
+    width:80%;
+    padding:10px;
+    height: 80px;
+    padding:10px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(30deg, rgb(29, 29, 29) 0%, rgb(12, 12, 12) 100%);
+    transition: 0.3s all ease;
+}
+
+div.playlistperfil:hover {
+    background: linear-gradient(300deg, rgb(29, 29, 29) 0%, rgb(22, 22, 22) 100%);
+    width: 81%;
+    height:82px;
+    cursor: pointer;
+}
+
+div.esquerdaplaylist {
+    width: 30%;
+    display: flex;
+    align-items: center;
+}
+
+div.dereitaplaylist {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+img.imaxeplaylist {
+    height: 90%;
+    border-radius: 5px;
+}
+
+div.tituloplaylistperfil {
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 30px;
+}
+
+
+
 
 /* Estilos do pé de páxina */
 
 div.pepaxina {
-    margin-top: 25px;
+    margin-top: 0;
     width: 100%;
     height: 50px;
     background-color: black;
@@ -378,6 +900,7 @@ div.pepaxina {
     display:flex;
     justify-content: space-around;
     align-items: center;
+    bottom:0;
 }
 
 div.pepaxina h2 {
