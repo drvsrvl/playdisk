@@ -17,7 +17,7 @@ class CreateArtistasTable extends Migration
             $table->id();
             $table->string('nome');
             $table->mediumText('descripcion');
-            $table->string('foto');
+            $table->string('foto')->default('default.png');
             $table->timestamps();
         });
     }

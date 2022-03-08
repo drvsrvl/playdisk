@@ -10,11 +10,11 @@ class Comentario extends Model
 {
     use HasFactory;
     
-    public function produtos() {
+    public function produto() {
         return $this->belongsTo(Produto::class);
     }
     
-     public function perfils() {
+     public function perfil() {
         return $this->belongsTo(Perfil::class);
     }
 }

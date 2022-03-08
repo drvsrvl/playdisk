@@ -5,7 +5,7 @@
 @section('title', 'lista')
 @section('contido')
          <x-slot name="logo">
-            <div class="identidade"
+            <div class="identidade">
                 <a href="/">
                     <h1>PLAYDISK</h1>
                 </a>

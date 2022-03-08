@@ -2,10 +2,12 @@
 @section('title', 'index')
 @section('contido')
 <div class="artistainfo">
-    <img class="artistafoto" src="/img/artista/{{$artista->foto}}"></img>
+    <div style="width:200px;height:200px;overflow:hidden;display:inline-block;position:relative;border-radius:50%">
+        <img class="artistafoto" src="/img/artista/{{$artista->foto}}"></img>
+    </div>
     <h3 class="artistanome mx-5">{{$artista->nome}}</h3>
 </div>
-<div class="informacionartista">
+<div class="informacionartista mb-1">
     <div class="descripcionartista">
         <div class="my-3 mx-3">
             <h2>Descripción</h2>

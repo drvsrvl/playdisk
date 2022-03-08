@@ -10,18 +10,10 @@
         <div class="seccions">
             <ul>
                 <a href="/catalogo"><li>Catálogo</li></a>
-                <div class="dropdown">
-                    <li>Vistas <i class="bi bi-caret-down-fill"></i></li>
-                    <div class="dropdownmenu">
-                        <a href="/artista">Artista</a>
-                        <a href="/album">Álbum</a>
-                        <a href="/perfil">Perfil</a>
-                        <a href="/lista">Lista</a>
-                </div>
             </ul>
         </div>
     </div>
-    <div class="dereita">
+    <div class="dereita mx-4">
         <div class="buscador">
             <input type="text" placeholder="Busca aquí">
         </div>
@@ -30,8 +22,22 @@
             <a href="/login"><button class="login">Login</button></a>
         </div>
         @else
-        {{Auth::user()->perfil->login}}
-        
+
+            <div class="dropdown mx-2">
+                <div class="nomeperfildropdown mt-1 pr-1" style="display:flex;">
+                {{Auth::user()->perfil->login}} <i class="bi bi-caret-down-fill mx-1"></i>
+                </div>
+                <div class="dropdownmenu">
+                    <a href="/perfil/{{Auth::user()->perfil->id}}">Perfil</a>
+                    <a href="/config/{{Auth::user()->perfil->id}}">Configuración</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                            Logout
+                        </a>
+                    </form>
+                </div>
+            </div>
         @endif
     </div>
     <!-- No caso de que estea iniciada a sesión faríamos algo co perfil

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Perfil;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProdutoController;
 
 class PerfilController extends Controller
 {
@@ -56,9 +60,10 @@ class PerfilController extends Controller
      * @param  \App\Models\Perfil  $perfil
      * @return \Illuminate\Http\Response
      */
-    public function edit(Perfil $perfil)
+    public function edit($id)
     {
-        //
+        $perfil = Perfil::find($id);
+        return view('perfilconfig', ['perfil' => $perfil]);
     }
 
     /**
@@ -68,9 +73,33 @@ class PerfilController extends Controller
      * @param  \App\Models\Perfil  $perfil
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Perfil $perfil)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([ //validamos os campos
+            'login' => 'required|string',
+            'descripcion' => 'required|string',
+        ]);
+        if($validated) { //no caso de ser válidos
+            $perfil = Perfil::find($id); //buscamos o nodo con esa id
+            $nomefoto = $perfil->foto; //recuperamos o valor do nome da imaxe
+            if($request->hasfile('foto')){
+                $foto = $request->file('foto');
+                $nome = "perfil" . $id;
+                $extension = $foto->guessExtension();
+                $nomefoto = "$nome.$extension"; //poñémoslle de nome o timestamp coa extensión
+                $foto->move(public_path('img/perfil'),$nomefoto); //e movémola á carpeta de imaxes da entrada
+            }
+            DB::update('update perfils set login=?, foto=?, descripcion=? where id="' . $id . '"',
+                [
+                    $request->login,
+                    $nomefoto,
+                    $request->descripcion,
+                ]);  //facemos a consulta preparada e pasámoslle os parámetros indicados
+            return redirect()->action([PerfilController::class, 'show'], ['id' => $id]); //rediriximos á vista detallada do nodo co id indicado
+        }
+        else {
+
+        }
     }
 
     /**
@@ -79,8 +108,12 @@ class PerfilController extends Controller
      * @param  \App\Models\Perfil  $perfil
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Perfil $perfil)
+    public function destroy($id)
     {
-        //
+        $perfil = Perfil::find($id);
+        $user = User::find($perfil->usuario->id);
+        $perfil->delete();
+        $user->delete();
+        return redirect()->action([ProdutoController::class, 'inicio']);
     }
 }

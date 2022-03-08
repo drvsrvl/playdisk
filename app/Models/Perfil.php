@@ -3,7 +3,7 @@
 namespace App\Models;
 use App\Models\Comentarios;
 use App\Models\Lista;
-use App\Models\Usuario;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +11,7 @@ class Perfil extends Model
 {
     use HasFactory;
     public function usuario() {
-        return $this->hasOne(Usuario::class);
+        return $this->hasOne(User::class);
    }
     public function comentarios() {
         return $this->hasMany(Comentario::class);

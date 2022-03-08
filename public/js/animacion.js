@@ -55,8 +55,13 @@ var TxtRotate = function(el, toRotate, period) {
     document.body.appendChild(css);
   };
 
-function openSideBar() {
-  document.getElementById("sideBar").classList.toggle('show');
+function verlistas(cancionid) {
+  document.getElementById("scriptlistas").classList.toggle('show');
+  
+}
+
+function vincularlista(cancionid, listaid) {
+  window.location.href = "/vincular/" + cancionid + "/" + listaid;
 }
 
 function closeSideBar() {
@@ -79,4 +84,12 @@ function play(id) {
   
 function link(seccion, id) {
     window.location.href = "/" + seccion + "/" + id;
+}
+
+function eliminarcomentario(id) {
+  document.getElementById('eliminarcomentario'+id).classList.remove('notshow');
+}
+
+function outeliminarcomentario(id) {
+  document.getElementById('eliminarcomentario'+id).classList.toggle('notshow');
 }

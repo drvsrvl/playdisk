@@ -16,7 +16,6 @@ class CreateComentariosTable extends Migration
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
             $table->tinyText('comentario');
-            $table->string('tipo');
             $table->bigInteger('perfil_id')->unsigned();
             $table->bigInteger('produto_id')->unsigned();
             $table->date('data');

@@ -2,7 +2,7 @@
  @import url('https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&display=swap');
 
  * {
-     font-family: 'Shippori Antique B1', sans-serif;
+     /*font-family: 'Shippori Antique B1', sans-serif;*/
  }
 html {
     background-color: black;
@@ -56,7 +56,7 @@ div.menu {
 }
 
 div.esquerda{
-    width: 100%;
+    width: 50%;
     display: flex;
     flex-direction: row;
     margin: 0 25px;
@@ -121,18 +121,18 @@ div.dropdown {
 }
 
 div.dropdownmenu {
-    padding-top:10px;
+    padding-top:15px;
     z-index: 3;
     position: absolute;
     min-width: 160px;
     display: none;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    right: 0;
 }
 div.dropdownmenu a {
     width: 100%;
-    text-align: center;
+    text-align: right;
     text-decoration: none;
     background-color: white;
     padding: 10px;
@@ -187,7 +187,7 @@ div.indexportada {
 }
 
 div.indexesquerda {
-    width: 65%;
+    width: 75%;
     padding: 25px;
     height: 100%;
     padding-top: 50px;
@@ -273,9 +273,7 @@ div.trend div.trendingtitulo {
     font-size: 25px;
 }
 
-div.trend div.artista {
 
-}
 
 div.trend:hover {
     cursor: pointer;
@@ -536,20 +534,20 @@ div.albumtexto a:hover {
     /*Información álbum*/
 
     div.informacionalbum {
-        margin-top: -20px;
         padding-top: 20px;
-        margin-bottom: -20px;
         width: 100%;
         overflow: auto;
         border-bottom: 1px solid black;
+     
     }
 
     div.descripcion {
         float:left;
         width: 60%;
         margin:0 15px 0 10px;
-        border-right: 1px solid black;
         text-align: justify;
+        height: 120%;
+        
     }
 
     div.mercar {
@@ -720,11 +718,8 @@ div.artistainfo {
 }
 
 img.artistafoto {
-    height: 80%;
-    border-radius: 50%;
-    background-position: 50%;
+    height: 100%;
     border: 1px solid black;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 24px;
 }
 
 h3.artistanome {
@@ -732,7 +727,6 @@ h3.artistanome {
     color: black;
     font-weight: 700;
     /*-webkit-text-stroke: 1px black;*/
-    text-shadow: rgba(44, 44, 44, 0.35) 0px 0px 15px;
 }
 
 div.informacionartista {
@@ -812,9 +806,8 @@ div.perfilinfo {
 }
 
 img.perfilfoto {
-    height: 60%;
-    border-radius: 50%;
-    border: 1.5px solid black;
+    height: 100%;
+ 
     box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 24px;
 }
 
@@ -895,8 +888,7 @@ div.dereitaplaylist {
 }
 
 img.imaxeplaylist {
-    height: 90%;
-    border-radius: 5px;
+    height: 100%;
 }
 
 div.tituloplaylistperfil {
@@ -930,11 +922,11 @@ hr {
 }
 
 img.imglista {
-    border-radius: 10px;
+    height: 100%;
 }
 
 div.cancionslista {
-    min-height: 200px;
+    padding-bottom:25px;
 }
 
 div.playlistcancion {
@@ -962,6 +954,109 @@ div.playlistcancion:hover {
 h3.titulolista {
     font-weight: 600;
 }
+
+.divconfig {
+    color:grey;
+}
+
+.divconfig:hover {
+    color:white;
+    cursor:pointer;
+}
+
+.divconfig.verde:hover {
+    color:rgb(99, 175, 99);
+    cursor:pointer;
+}
+
+.divconfig.rojo:hover {
+    color: rgb(194, 44, 44);
+}
+
+.divconfig.notshow {
+    display:none;
+}
+
+/* Script listas */
+
+div.scriptlistas {
+    display:none;
+    width: 60%;
+    background: linear-gradient(30deg, rgb(14, 14, 14) 0%, rgb(36, 36, 36) 100%);
+    margin: 20px auto;
+    height:70%;
+    border-radius: 20px;
+    color:white;
+    background-color: black;
+    overflow: scroll;
+    position: fixed;
+    top: 100px;
+    left: 250px;
+    z-index:5;
+    box-shadow: rgba(19, 18, 18, 0.2) 0px 4px 24px;
+}
+
+div.scriptlistas.show {
+    display:block;
+}
+
+div.scriptinfolista {
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+    height: 50px;
+}
+
+div.scriptlistasperfil {
+    padding-bottom:20px;
+}
+
+div.playlistperfil {
+    margin: 0 auto;
+    width:80%;
+    padding:10px;
+    height: 80px;
+    padding:10px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(30deg, rgb(29, 29, 29) 0%, rgb(12, 12, 12) 100%);
+    transition: 0.3s all ease;
+}
+
+div.playlistperfil:hover {
+    background: linear-gradient(300deg, rgb(29, 29, 29) 0%, rgb(22, 22, 22) 100%);
+    width: 81%;
+    height:82px;
+    cursor: pointer;
+}
+
+div.scriptesquerdaplaylist {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+div.dereitaplaylist {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+img.imaxeplaylist {
+    height: 100%;
+}
+
+div.tituloplaylistperfil {
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 30px;
+}
+
 /* Estilos do pé de páxina */
 
 div.pepaxina {

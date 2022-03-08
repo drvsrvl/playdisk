@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Comentario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ComentarioController extends Controller
 {
@@ -33,9 +35,21 @@ class ComentarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $validated = $request->validate([ //validamos os campos
+            'comentario' => 'required|string',
+        ]);
+        if($validated) { //no caso de ser válidos
+            DB::insert('insert into comentarios (comentario, perfil_id, produto_id, data) values (?, ?, ?, ?)',
+                [
+                    $request->comentario,
+                    Auth::user()->perfil->id,
+                    $id,
+                    date("Y-m-d")
+                ]);  //facemos a consulta preparada e pasámoslle os parámetros indicados
+            return back();
+        }
     }
 
     /**
@@ -78,8 +92,10 @@ class ComentarioController extends Controller
      * @param  \App\Models\Comentario  $comentario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comentario $comentario)
+    public function destroy($id)
     {
-        //
+        $comentario = Comentario::find($id);
+        $comentario->delete();
+        return back();
     }
 }

@@ -18,7 +18,7 @@ class CreateListasTable extends Migration
             $table->string('titulo');
             $table->bigInteger('perfil_id')->unsigned();
             $table->mediumText('descripcion');
-            $table->string('foto');
+            $table->string('foto')->default('default.jpg');
             $table->foreign('perfil_id')
                 ->references('id')
                 ->on('perfils')

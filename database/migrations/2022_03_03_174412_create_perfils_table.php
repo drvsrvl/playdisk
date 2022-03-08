@@ -19,6 +19,7 @@ class CreatePerfilsTable extends Migration
             $table->string('rol')->default('user');
             $table->tinyText('descripcion');
             $table->bigInteger('user_id')->unsigned();
+            $table->string('foto')->default('default.png');
             $table->timestamps();
             $table->foreign('user_id')
                 ->references('id')
