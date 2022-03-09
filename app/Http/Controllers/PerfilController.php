@@ -21,6 +21,10 @@ class PerfilController extends Controller
         //
     }
 
+    public function adminpanel() {
+        return view('admin');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

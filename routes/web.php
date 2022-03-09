@@ -36,6 +36,28 @@ Route::get('/config/{id}', [PerfilController::class, 'edit']);
 
 Route::post('/config/{id}', [PerfilController::class, 'update']);
 
+Route::get('/admin', [PerfilController::class, 'adminpanel']);
+
+Route::get('/admin/artistas', [ArtistaController::class, 'admin']);
+
+//Rutas de edición de artista por parte do administrador
+
+Route::get('/admin/artista/{id}', [ArtistaController::class, 'edit']);
+
+Route::post('/admin/artista/{id}', [ArtistaController::class, 'update']);
+
+Route::get('/admin/artista', [ArtistaController::class, 'create']); //novo artista
+
+Route::post('/admin/artista', [ArtistaController::class, 'store']);
+
+//Rutas de edición de álbum∫ por parte do administrador
+
+Route::get('/admin/albumes', [ProdutoController::class, 'admin']);
+
+Route::get('/admin/perfiles', [PerfilController::class, 'admin']);
+
+Route::get('/admin/xeneros', [XeneroController::class, 'admin']);
+
 Route::get('/listanova', [ListaController::class, 'create']);
 
 Route::post('/listanova', [ListaController::class, 'store']);

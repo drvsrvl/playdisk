@@ -24,14 +24,14 @@
     <div class="tituloindextrending"> 
     <i class="bi bi-arrow-up-right-circle"></i> TRENDING
     </div>
-    <div class="trend" id="trend1">
+    <div class="trend" id="trend1" onclick="link()">
         <div class="trendingesquerda">
             <div class="posicion">01</div>
-            <!--<img class="trendingportada" src="img/vibras.png"></img> -->
+            <img class="trendingportada" src="img/caratula/amnesiac.jpg"></img> 
         </div>
         <div class="trendingtexto">
-            <div class="trendingtitulo">Vibras</div>
-            <div class="artista">J Balvin</div>
+            <div class="trendingtitulo">Amnesiac</div>
+            <div class="artista">Radiohead</div>
         </div>
     </div>
    

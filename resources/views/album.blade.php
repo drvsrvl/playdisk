@@ -24,7 +24,7 @@
                         <a href="/artista/{{$artista->id}}"><span class="autorcancion">{{$cancion->artistas}}</span></a>
                     </span>
                     <div class="duracion">{{$cancion->duracion}}</div>
-                    <div class="menutrack" 
+                    <div id="menutrack{{$cancion->id}}" class="menutrack" 
                     @if(Auth::user())
                         onclick="verlistas({{$cancion->id}})"
                     @endif
@@ -75,14 +75,14 @@
     </div>
         <div style="width:60%;margin:0 auto" class="pb-5">
         @foreach($produto->comentarios as $comentario)
-            <div style="display:flex;align-items:center" class="py-1" 
+            <div style="display:flex;align-items:center;width:100%;" class="py-2" 
                 @if(Auth::user()->perfil->id == $comentario->perfil->id)
                 onmouseover="eliminarcomentario({{$comentario->id}})" onmouseout="outeliminarcomentario({{$comentario->id}})"
                 @endif
             > 
                 <div style="width:50px;height:50px;overflow:hidden;display:inline-block;position:relative;border-radius:50%;
-                    ">
-                    <img class="perfilfoto" src="/img/perfil/{{$comentario->perfil->foto}}"></img>
+                    " onclick="link('perfil',{{$comentario->perfil->id}});">
+                    <img class="perfilfoto link" src="/img/perfil/{{$comentario->perfil->foto}}"></img>
                 </div>
                 <div class="px-3" style="display:flex;flex-direction:column;align-items:start;width:100%;">
                     <div style="display:flex;align-items:center; justify-content:space-between; width:100%">

@@ -69,7 +69,7 @@
                     <div class="numcancionsplaylist">{{$cancion->duracion}}</div>
                 </div>
             </div>
-            <div class="divconfig" onclick="window.location.href='/desvincular/{{$cancion->id}}/{{$lista->id}}'">
+            <div class="divconfig mx-4" onclick="window.location.href='/desvincular/{{$cancion->id}}/{{$lista->id}}'">
                 <h3><i class="bi bi-trash-fill"></i></h3>
             </div>
         </div>

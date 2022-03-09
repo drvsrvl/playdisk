@@ -57,7 +57,10 @@ var TxtRotate = function(el, toRotate, period) {
 
 function verlistas(cancionid) {
   document.getElementById("scriptlistas").classList.toggle('show');
-  
+  document.getElementById("menutrack" + cancionid).classList.toggle('click');
+  let url = window.location.href
+  url = url + '?cancion=' + cancionid
+  window.history.pushState(null, null, url);
 }
 
 function vincularlista(cancionid, listaid) {

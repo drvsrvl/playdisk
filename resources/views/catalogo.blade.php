@@ -16,9 +16,10 @@
         </select>
     </div>
     <div class="divcorpocatalogo">
-        <div class="albumescatalogo py-4">
+        <div class="albumescatalogo py-4" 
+            style="display:flex; align-items:center">
             @foreach($produtos as $produto)
-                <div class="fichaalbum" onclick="link('album',{{$produto->id}})">
+                <div class="fichaalbum mx-3" onclick="link('album',{{$produto->id}})">
                     <img class="fichaalbum" width="100%" src="/img/caratula/{{$produto->caratula}}"></img>
                     <div class="tituloficha">{{$produto->nome}}</div>
                     @foreach($produto->artistas as $artista)
