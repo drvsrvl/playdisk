@@ -36,9 +36,11 @@ class ComentarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $id)
-    {
+    {   
+        /*dd($request);
+        die();*/
         $validated = $request->validate([ //validamos os campos
-            'comentario' => 'required|string',
+            'comentario' => 'string'
         ]);
         if($validated) { //no caso de ser válidos
             DB::insert('insert into comentarios (comentario, perfil_id, produto_id, data) values (?, ?, ?, ?)',
@@ -47,8 +49,11 @@ class ComentarioController extends Controller
                     Auth::user()->perfil->id,
                     $id,
                     date("Y-m-d")
-                ]);  //facemos a consulta preparada e pasámoslle os parámetros indicados
-            return back();
+                ]);  //facemos a ccomentarioonsulta preparada e pasámoslle os parámetros indicados
+            $lastID = Comentario::latest('id')->first()->id;
+            $comentario = Comentario::find($lastID);
+            return view('novocomentario', ['comentario' => $comentario]);
+
         }
     }
 

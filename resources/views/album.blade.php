@@ -1,7 +1,8 @@
 @extends('layouts.master')
 @section('title'){{$produto->nome}}@stop
 @section('contido')
-<div class="infoalbum" id="infoalbum">
+
+<div class="infoalbum" id="infoalbum" style="user-select:none;">
     <div class="portada" >
         <div class="titulo">
             <span class="tituloalbum">{{$produto->nome}}</span>
@@ -30,7 +31,7 @@
                         onclick="verlistas({{$cancion->id}})"
                     @endif
                     >
-                        <h1 class="mb-1" style="margin-top:2px">+</h1>
+                        <h1 class="mb-1" style="margin-top:2px;">+</h1>
                     </div>
                 </div>
                 @endforeach
@@ -70,12 +71,13 @@
     <div class="comentarios pb-4">
         <form method="post" action="/album/{{$produto->id}}">
             @csrf
-            <textarea name="comentario" class="comentario" placeholder="Escrebe aquí o teu comentario..."></textarea>
-            <button type="submit" class="enviar">Enviar</button>
+            <textarea name="comentario" class="comentario" id="comentario" placeholder="Escrebe aquí o teu comentario...">yhgfhg</textarea>
+            <button type="button" class="enviar" onclick="novoComentario()">Enviar</button>
         </form>
     </div>
         <div style="width:60%;margin:0 auto" class="pb-5">
-        @foreach($produto->comentarios as $comentario)
+            <div style="width:100%;" id="novoComentario"></div>
+        @foreach($produto->comentarios->sortByDesc('data') as $comentario)
             <div style="display:flex;align-items:center;width:100%;" class="py-2" 
                 @if(Auth::user()->perfil->id == $comentario->perfil->id)
                 onmouseover="eliminarcomentario({{$comentario->id}})" onmouseout="outeliminarcomentario({{$comentario->id}})"
@@ -100,13 +102,30 @@
                 </div>
             </div>
     @endforeach
+        
         </div>
 </div>
 
 @include('layouts.scriptlistas')
 
 <script>
-    $(window).ready(function(){
+    
+    function novoComentario() {
+        var comentario = $('#comentario').val();
+        var token = '{{csrf_token()}}';// ó $("#token").val() si lo tienes en una etiqueta html.
+        var data={comentario:comentario,_token:token};
+        $.ajax({
+            type: "post",
+            url: "/album/{{$produto->id}}",
+            data: data,
+            success: function (data) {
+                document.getElementById('novoComentario').innerHTML += data;
+            }
+        });
+    };
+
+    
+     $(window).ready(function(){
         
         var sourceImage = document.getElementById("img");
         var colorThief = new ColorThief();
@@ -115,7 +134,7 @@
         /*document.getElementById("menu").style.backgroundColor = "rgb(" + color + ")";*/
 
         
-    });
+        });
 </script>
 
 @stop

@@ -25,7 +25,7 @@
 
             <div class="dropdown mx-2">
                 <div class="nomeperfildropdown mt-1 pr-1" 
-                    style="display:flex; align-items:center;border:1px solid black;border-radius:40px;background-color:black;color:white">
+                    style="display:flex; align-items:center;border:1px solid black;border-radius:40px;background-color:black;color:white;min-width:130px;">
                     <div class="" style="width:35px;height:35px;overflow:hidden;display:inline-block;position:relative;border-radius:50%;border: 1px solid black;
                         ">
                         <img class="perfilfoto" src="/img/perfil/{{Auth::user()->perfil->foto}}"></img>
