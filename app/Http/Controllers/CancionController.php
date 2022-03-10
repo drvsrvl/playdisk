@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cancion;
+use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CancionController extends Controller
 {
@@ -35,7 +38,34 @@ class CancionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([ //validamos os campos
+            'nome' => 'required|string',
+            'produtoid' => 'required',
+            'posicion' => 'required'
+        ]);
+        if($validated) { //no caso de ser válidos
+            if($request->hasfile('arquivo')){
+                $arquivo = $request->file('arquivo');
+                $nome = "cancion" . $id;
+                $extension = $arquivo->guessExtension();
+                $nomecancion = "$nome.$extension"; //poñémoslle de nome o timestamp coa extensión
+                $arquivo->move(public_path('cancions'),$nomecancion); //e movémola á carpeta de imaxes da entrada
+            } else $nomecancion = 'default.mp3';
+            DB::insert('insert into cancions (nome, produto_id, arquivo, numero_produto, reproduccions, duracion, artistas) values (?, ?, ?, ?, ?, ?, ?)',
+                [
+                    $request->nome,
+                    $request->produtoid,
+                    $nomecancion,
+                    $request->posicion,
+                    '0',
+                    '00:03:00',
+                    'Björk'
+                ]);  //facemos a consulta preparada e pasámoslle os parámetros indicados
+            return redirect()->action([ProdutoController::class, 'admin']); //rediriximos á vista detallada do nodo co id indicado
+        }
+        else {
+
+        }
     }
 
     /**

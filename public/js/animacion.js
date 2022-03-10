@@ -58,13 +58,13 @@ var TxtRotate = function(el, toRotate, period) {
 function verlistas(cancionid) {
   document.getElementById("scriptlistas").classList.toggle('show');
   document.getElementById("menutrack" + cancionid).classList.toggle('click');
-  let url = window.location.href
-  url = url + '?cancion=' + cancionid
-  window.history.pushState(null, null, url);
+  document.getElementById("idcancion").value = cancionid;
 }
 
-function vincularlista(cancionid, listaid) {
+function vincularlista(listaid) {
+  let cancionid = document.getElementById("idcancion").value;
   window.location.href = "/vincular/" + cancionid + "/" + listaid;
+  document.getElementById("idcancion").value = "";
 }
 
 function closeSideBar() {

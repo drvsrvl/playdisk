@@ -8,6 +8,7 @@ html {
 body {
     margin-top: 75px;
     background-color: black;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 ::selection {
@@ -487,7 +488,7 @@ div.menutrack {
     font-weight: 100;
     padding: 0 15px 0px 15px;
     border: 1px solid black;
-    border-radius: 50px;
+    border-radius: 50%;
 }
 div.menutrack:hover{
     background-color: black;
@@ -521,7 +522,7 @@ div.albumtexto a:hover {
 }
 .numCancion  {
     display:none;
-    padding-right: 11px;
+    padding-right: 10px;
 }
 
 .simPlay {

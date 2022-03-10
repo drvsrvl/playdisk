@@ -12,12 +12,13 @@
     </div>
     <div class="albumtexto">
             <h2 class="titulo">Tracklist</h2>
+            <input id="idcancion" type="hidden" value="">
             <div class="tracklist">
                 @foreach($produto->cancions as $cancion)
-                <div class="cancion" id="cancion1" onmouseover="play(1);" onmouseout="dontplay(1);">
+                <div class="cancion" id="cancion1" onmouseover="play({{$cancion->id}});" onmouseout="dontplay({{$cancion->id}});">
                     <span class="play">
-                        <h2 id="numCancion1" class="numCancion show">{{$cancion->numero_produto}}</h2>
-                        <h2 id="simPlay1" class="simPlay">▶︎</h2>
+                        <h2 id="numCancion{{$cancion->id}}" class="numCancion show">{{$cancion->numero_produto}}</h2>
+                        <h2 id="simPlay{{$cancion->id}}" class="simPlay" style="margin-top:3px;">▶︎</h2>
                     </span>
                     <span class="medio">
                         <span class="titulocancion">{{$cancion->nome}}</span>
@@ -29,7 +30,7 @@
                         onclick="verlistas({{$cancion->id}})"
                     @endif
                     >
-                        <h1>+</h1>
+                        <h1 class="mb-1" style="margin-top:2px">+</h1>
                     </div>
                 </div>
                 @endforeach
@@ -101,7 +102,6 @@
     @endforeach
         </div>
 </div>
-
 
 @include('layouts.scriptlistas')
 

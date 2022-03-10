@@ -1,8 +1,4 @@
-<?php
-    if (isset($_GET['cancion'])) {
-        $cancionid=$_GET['cancion'];
-    } else $cancionid='2';
-?>
+@if(Auth::user())
 <div class="scriptlistas" id="scriptlistas">
     <div class="scriptinfolista">
         <h4 class="pt-4">Engadir a:</h4>
@@ -11,7 +7,7 @@
     <div class="scriptlistasperfil">
         <div class="divlistas my-4" >
             @foreach($perfil->listas as $lista)
-                    <div class="playlistperfil my-2" onclick="vincularlista({{$cancionid}},{{$lista->id}})">
+                    <div class="playlistperfil my-2" onclick="vincularlista({{$lista->id}})">
                         <div class="scriptesquerdaplaylist">
                             <div style="width:60px;height:60px;overflow:hidden;display:inline-block;position:relative;border-radius:5%;">
                                 <img class="imaxeplaylist" height="100%" src="/img/lista/{{$lista->foto}}"></img>
@@ -34,3 +30,4 @@
         </div>
     </div>
 </div>
+@endif
