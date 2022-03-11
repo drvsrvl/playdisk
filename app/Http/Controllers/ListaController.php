@@ -23,17 +23,21 @@ class ListaController extends Controller
 
     public function vincular($cancionid, $listaid) {
         $lista = Lista::find($listaid);
-        $cancion = Cancion::find($cancionid);
-        $lista->cancions()->attach($cancion);
-        return redirect()->action([ProdutoController::class, 'show'], ['id' => $cancion->produto->id]); //rediriximos á vista detallada do nodo co id indicado
+        if($lista->perfil->id == Auth::user()->perfil->id) {
+            $cancion = Cancion::find($cancionid);
+            $lista->cancions()->attach($cancion);
+            return redirect()->action([ProdutoController::class, 'show'], ['id' => $cancion->produto->id]); //rediriximos á vista detallada do nodo co id indicado
+        } else return abort(403, 'Acción non autorizada');
     }
 
 
     public function desvincular($cancionid, $listaid) {
         $lista = Lista::find($listaid);
-        $cancion = Cancion::find($cancionid);
-        $lista->cancions()->detach($cancion);
-        return redirect()->action([ListaController::class, 'edit'], ['id' => $listaid]); //rediriximos á vista detallada do nodo co id indicado
+        if($lista->perfil->id == Auth::user()->perfil->id) {
+            $cancion = Cancion::find($cancionid);
+            $lista->cancions()->detach($cancion);
+            return redirect()->action([ListaController::class, 'edit'], ['id' => $listaid]); //rediriximos á vista detallada do nodo co id indicado
+        } else return abort(403, 'Acción non autorizada');
     }
     /**
      * Show the form for creating a new resource.
@@ -99,7 +103,9 @@ class ListaController extends Controller
     public function edit($id)
     {
         $lista = Lista::find($id);
-        return view('listaconfig', ['lista' => $lista]);
+        if($lista->perfil->id == Auth::user()->perfil->id) {
+            return view('listaconfig', ['lista' => $lista]);
+        } else return abort(403, 'Acción non autorizada');
     }
 
     /**
@@ -148,7 +154,10 @@ class ListaController extends Controller
     public function destroy($id)
     {
         $lista = Lista::find($id);
-        $lista->delete(); //eliminamos o nodo atopado a través da id
-        return redirect()->action([PerfilController::class, 'show'], ['id' => Auth::user()->perfil->id]);
+        if($lista->perfil->id == Auth::user()->perfil->id) {
+            $lista->delete(); //eliminamos o nodo atopado a través da id
+            return redirect()->action([PerfilController::class, 'show'], ['id' => Auth::user()->perfil->id]);
+        }
+        else return abort(403, 'Acción non autorizada');
     }
 }

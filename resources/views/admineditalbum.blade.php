@@ -93,7 +93,11 @@
                 <h5 class="mx-4">Posición en álbum: </h5>
                     <input type="number" name="posicion"
                         style="background:none;border: 1px solid grey; color: white; outline: none;">
+                <h5 class="mx-4">Duración da canción: </h5>
+                    <input type="time" name="duracion"
+                        style="background:none;border: 1px solid grey; color: white; outline: none;">
             </div>
+            
             <div class="pb-4" style="display:flex;width:100%;justify-content:center;">
                 <button 
                     type="submit"

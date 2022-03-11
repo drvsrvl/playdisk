@@ -66,8 +66,10 @@ class PerfilController extends Controller
      */
     public function edit($id)
     {
-        $perfil = Perfil::find($id);
-        return view('perfilconfig', ['perfil' => $perfil]);
+        if(Auth::user()->perfil->id == $id) {
+            $perfil = Perfil::find($id);
+            return view('perfilconfig', ['perfil' => $perfil]);
+        } else return abort(403, 'Acción non autorizada');
     }
 
     /**
@@ -114,10 +116,12 @@ class PerfilController extends Controller
      */
     public function destroy($id)
     {
-        $perfil = Perfil::find($id);
-        $user = User::find($perfil->usuario->id);
-        $perfil->delete();
-        $user->delete();
-        return redirect()->action([ProdutoController::class, 'inicio']);
+        if(Auth::user()->perfil->id == $id) {
+            $perfil = Perfil::find($id);
+            $user = User::find($perfil->usuario->id);
+            $perfil->delete();
+            $user->delete();
+            return redirect()->action([ProdutoController::class, 'inicio']);
+        } else return abort(403, 'Acción non autorizada');
     }
 }

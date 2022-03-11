@@ -41,7 +41,8 @@ class CancionController extends Controller
         $validated = $request->validate([ //validamos os campos
             'nome' => 'required|string',
             'produtoid' => 'required',
-            'posicion' => 'required'
+            'posicion' => 'required',
+            'arquivo' => 'required|file',
         ]);
         if($validated) { //no caso de ser válidos
             if($request->hasfile('arquivo')){
@@ -58,7 +59,7 @@ class CancionController extends Controller
                     $nomecancion,
                     $request->posicion,
                     '0',
-                    '00:03:00',
+                    $request->duracion,
                     'Björk'
                 ]);  //facemos a consulta preparada e pasámoslle os parámetros indicados
             return redirect()->action([ProdutoController::class, 'admin']); //rediriximos á vista detallada do nodo co id indicado

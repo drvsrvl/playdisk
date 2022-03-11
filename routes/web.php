@@ -41,45 +41,45 @@ Route::get('/config/{id}', [PerfilController::class, 'edit']);
 
 Route::post('/config/{id}', [PerfilController::class, 'update']);
 
-Route::get('/admin', [PerfilController::class, 'adminpanel']);
+Route::get('/admin', [PerfilController::class, 'adminpanel'])->middleware('admin');
 
 //Rutas de edición de artista por parte do administrador
 
-Route::get('/admin/artistas', [ArtistaController::class, 'admin']);
+Route::get('/admin/artistas', [ArtistaController::class, 'admin'])->middleware('admin');
 
-Route::get('/admin/artista/{id}', [ArtistaController::class, 'edit']);
+Route::get('/admin/artista/{id}', [ArtistaController::class, 'edit'])->middleware('admin');
 
-Route::post('/admin/artista/{id}', [ArtistaController::class, 'update']);
+Route::post('/admin/artista/{id}', [ArtistaController::class, 'update'])->middleware('admin');
 
-Route::get('/admin/artista', [ArtistaController::class, 'create']); //novo artista
+Route::get('/admin/artista', [ArtistaController::class, 'create'])->middleware('admin'); //novo artista
 
-Route::post('/admin/artista', [ArtistaController::class, 'store']);
+Route::post('/admin/artista', [ArtistaController::class, 'store'])->middleware('admin');
 
 //Rutas de edición de álbum por parte do administrador
 
-Route::get('/admin/albumes', [ProdutoController::class, 'admin']);
+Route::get('/admin/albumes', [ProdutoController::class, 'admin'])->middleware('admin');
 
-Route::get('/admin/album/{id}', [ProdutoController::class, 'edit']);
+Route::get('/admin/album/{id}', [ProdutoController::class, 'edit'])->middleware('admin');
 
-Route::post('/admin/album/{id}', [ProdutoController::class, 'update']);
+Route::post('/admin/album/{id}', [ProdutoController::class, 'update'])->middleware('admin');
 
-Route::get('/admin/album', [ProdutoController::class, 'create']); //novo artista
+Route::get('/admin/album', [ProdutoController::class, 'create'])->middleware('admin'); //novo artista
 
-Route::post('/admin/album', [ProdutoController::class, 'store']);
+Route::post('/admin/album', [ProdutoController::class, 'store'])->middleware('admin');
 
 //Rutas de edición de canción
 
-Route::post('/admin/cancion', [CancionController::class, 'store']);
+Route::post('/admin/cancion', [CancionController::class, 'store'])->middleware('admin');
 
 //Rutas de edición de perfís por parte do administrador
 
-Route::get('/admin/perfiles', [PerfilController::class, 'admin']);
+Route::get('/admin/perfiles', [PerfilController::class, 'admin'])->middleware('admin');
 
-Route::get('/admin/xeneros', [XeneroController::class, 'admin']);
+Route::get('/admin/xeneros', [XeneroController::class, 'admin'])->middleware('admin');
 
-Route::get('/listanova', [ListaController::class, 'create']);
+Route::get('/listanova', [ListaController::class, 'create'])->middleware('auth');
 
-Route::post('/listanova', [ListaController::class, 'store']);
+Route::post('/listanova', [ListaController::class, 'store'])->middleware('auth');
 
 Route::get('/lista/{id}', [ListaController::class, 'show']);
 
