@@ -71,7 +71,7 @@
     <div class="comentarios pb-4">
         <form method="post" action="/album/{{$produto->id}}">
             @csrf
-            <textarea name="comentario" class="comentario" id="comentario" placeholder="Escrebe aquí o teu comentario...">yhgfhg</textarea>
+            <textarea name="comentario" class="comentario" id="comentario" placeholder="Escrebe aquí o teu comentario..."></textarea>
             <button type="button" class="enviar" onclick="novoComentario()">Enviar</button>
         </form>
     </div>
@@ -120,6 +120,7 @@
             data: data,
             success: function (data) {
                 document.getElementById('novoComentario').innerHTML += data;
+                $("#novoComentario").fadeIn(3000);
             }
         });
     };

@@ -14,8 +14,11 @@
         </div>
     </div>
     <div class="dereita mx-4" style="display:flex; align-items:center;">
-        <div class="buscador mt-1">
-            <input type="text" placeholder="Busca aquí">
+        <div class="buscador mt-1" style="">
+            <input type="text" placeholder="Busca aquí" id="inputbuscadormenu">
+            <div class="contedormenuresultados" id="contedormenuresultados">
+                
+            </div>
         </div>
         @if(!Auth::user())
         <div class="login">
@@ -47,8 +50,22 @@
             </div>
         @endif
     </div>
-    <!-- No caso de que estea iniciada a sesión faríamos algo co perfil
-    ...
-    -->
+    <script>
+        $(document).ready(function() {
+            $('#inputbuscadormenu').on('keyup',function () {
+                var buscar = $(this).val();
+                var data={'nome':buscar};
+                $.ajax({
+                    type: "get",
+                    url: "/buscadormenu",
+                    data: data,
+                    success: function (data) {
+                        document.getElementById('contedormenuresultados').innerHTML = data;
+                    }
+                });
+                if($(this).val() === "") document.getElementById('contedormenuresultados').innerHTML = "";
+            });
+        });
+</script>
 
 </div>

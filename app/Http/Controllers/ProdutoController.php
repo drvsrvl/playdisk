@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use App\Models\Perfil;
 use App\Models\Xenero;
 use App\Models\Artista;
 use Illuminate\Http\Request;
@@ -21,6 +22,32 @@ class ProdutoController extends Controller
         $produtos = Produto::all();
         $xeneros = Xenero::all();
         return view('catalogo', ['produtos' => $produtos, 'xeneros' => $xeneros]);
+    }
+
+    public function buscadorindex(Request $request) {
+        if ($request->ajax()) {
+            $artistas = Artista::where('nome','LIKE',$request->nome.'%')->get(); 
+            $produtos = Produto::where('nome','LIKE',$request->nome.'%')->get();
+            if(empty($request->nome)) {
+                $artistas = 'No';
+                $produtos = [];
+            }
+            return view('buscadorindex', ['artistas' => $artistas, 'produtos' => $produtos]);
+        }
+    }
+
+    public function buscadormenu(Request $request) {
+        if ($request->ajax()) {
+            $artistas = Artista::where('nome','LIKE',$request->nome.'%')->get(); 
+            $produtos = Produto::where('nome','LIKE',$request->nome.'%')->get();
+            $perfis = Perfil::where('login','LIKE',$request->nome.'%')->get();
+            if(empty($request->nome)) {
+                $artistas = [];
+                $produtos = 'No';
+                $perfis = [];
+            }
+            return view('buscadormenu', ['artistas' => $artistas, 'produtos' => $produtos, 'perfis' => $perfis]);
+        }
     }
 
     /**
@@ -93,7 +120,27 @@ class ProdutoController extends Controller
     public function inicio() {
         $ultimosProdutos = Produto::orderby('data','desc')->get();
         $xeneros = Xenero::all();
-        return view('index', ['ultimosProdutos' => $ultimosProdutos, 'xeneros' => $xeneros]);
+
+        $reproduccions = [];
+        $produtos = Produto::all();
+        foreach ($produtos as $produto) {
+            $contadorReproduccions = 0;
+            foreach ($produto->cancions as $cancion) {
+                $contadorReproduccions += intval($cancion->reproduccions);
+            }
+            $reproduccions[$produto->id] = $contadorReproduccions;
+        }
+        arsort($reproduccions);
+        $trending = [];
+        $cont=0;
+        foreach ($reproduccions as $produtoid => $contador) {
+            $trending[$cont] = Produto::find($produtoid);
+            $cont++;
+            if($cont == 6) {
+                break;
+            }
+        }
+        return view('index', ['ultimosProdutos' => $ultimosProdutos, 'xeneros' => $xeneros, 'trending' => $trending]);
     }
 
     public function admin() {

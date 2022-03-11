@@ -27,6 +27,10 @@ Route::get('/comentario/eliminar/{id}', [ComentarioController::class, 'destroy']
 
 Route::get('/', [ProdutoController::class, 'inicio']);
 
+Route::get('buscadorindex', [ProdutoController::class, 'buscadorindex']);
+
+Route::get('/buscadormenu', [ProdutoController::class, 'buscadormenu']);
+
 Route::get('/artista/{id}', [ArtistaController::class, 'show']);
 
 Route::get('/perfil/{id}', [PerfilController::class, 'show']);

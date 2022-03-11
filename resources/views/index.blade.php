@@ -17,28 +17,38 @@
         <a href="/register"><button class="botonindexesquerda">Comezar</button></a>
     </div>
     <div class="svgdereita">
-
+        <img src="img/svg/compose.svg"></img>
     </div>
 </div>
 <div class="indextrending">
     <div class="tituloindextrending"> 
     <i class="bi bi-arrow-up-right-circle"></i> TRENDING
     </div>
-    <div class="trend" id="trend1" onclick="link()">
-        <div class="trendingesquerda">
-            <div class="posicion">01</div>
-            <img class="trendingportada" src="img/caratula/amnesiac.jpg"></img> 
-        </div>
-        <div class="trendingtexto">
-            <div class="trendingtitulo">Amnesiac</div>
-            <div class="artista">Radiohead</div>
-        </div>
+    <?php $cont = 1; ?>
+    <div
+        style="width:100%; display:flex; justify-content:start; align-items:center">
+        @foreach($trending as $produto)
+            <div class="trend" id="trend" onclick="link('album', {{$produto->id}})">
+                <div class="trendingesquerda">
+                    <div class="posicion">{{$cont}}</div>
+                    <img class="trendingportada" src="img/caratula/{{$produto->caratula}}"></img> 
+                </div>
+                <div class="trendingtexto">
+                    <div class="trendingtitulo">{{$produto->nome}}</div>
+                    @foreach($produto->artistas as $artista)
+                        <div class="artista">{{$artista->nome}}</div>
+                    @endforeach
+                </div>
+            </div>
+            <?php $cont++; ?>
+        @endforeach
     </div>
-   
 </div>
 <div class="indexbuscador">
-        <input type="text" class="indexbuscador" placeholder="Busca aquí por artista o álbum">
-        
+        <input type="text" class="indexbuscador" id="indexbuscador" placeholder="Busca aquí por artista o álbum">
+        <div style="width:67%;margin-top:-20px;padding-top:20px;padding-bottom:40px;position:relative;">
+            <div class="divresultadosbuscador" id="divresultadosbuscador"></div>
+        </div>
 </div>
 <div class="indextags">
     <div class="tituloindextags"> 
@@ -72,4 +82,23 @@
        
     @endfor
 </div>
+
+<script>
+        $(document).ready(function() {
+            $('#indexbuscador').on('keyup',function () {
+                var buscar = $(this).val();
+                var data={'nome':buscar};
+                $.ajax({
+                    type: "get",
+                    url: "/buscadorindex",
+                    data: data,
+                    success: function (data) {
+                        
+                        document.getElementById('divresultadosbuscador').innerHTML = data;
+                    }
+                });
+                if($(this).val() === "") document.getElementById('divresultadosbuscador').innerHTML = "";
+            });
+        });
+</script>
 @stop
