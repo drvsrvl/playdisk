@@ -36,8 +36,9 @@
     <hr/>
     <div class="cancionslista">
         @foreach($lista->cancions as $cancion)
-            <div class="playlistcancion my-2" onmouseover="play({{$cancion->id}});" onmouseout="dontplay({{$cancion->id}});">
+            <div class="playlistcancion my-2" onmouseover="play({{$cancion->id}});" onmouseout="dontplay({{$cancion->id}});" onclick="reproducir({{$cancion->id}})">
                 <div class="esquerdaplaylist" style="width:50%;overflow:hide">
+                <input type="hidden" id="playing{{$cancion->id}}" value="false">
                 <span class="play">
                             <h2 id="numCancion{{$cancion->id}}" class="numCancion show">{{1}}</h2>
                             <h2 id="simPlay{{$cancion->id}}" class="simPlay">▶︎</h2>
@@ -55,5 +56,6 @@
     </div>
 </div>
 </div>
-
+<div id="espazoreproductor" style="width:100%">
+</div>
 @stop

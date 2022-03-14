@@ -42,9 +42,11 @@ class CancionController extends Controller
             'nome' => 'required|string',
             'produtoid' => 'required',
             'posicion' => 'required',
-            'arquivo' => 'required|file',
+            'arquivo' => 'required',
         ]);
         if($validated) { //no caso de ser válidos
+            $id = Cancion::latest('id')->first()->id;
+            $id++;
             if($request->hasfile('arquivo')){
                 $arquivo = $request->file('arquivo');
                 $nome = "cancion" . $id;
@@ -69,6 +71,14 @@ class CancionController extends Controller
         }
     }
 
+    public function reproducir(Request $request) {
+        if($request->ajax()) {
+            $cancion = Cancion::find($request->id);
+            $cancion->reproduccions = intval($cancion->reproduccions) + 1;
+            $cancion->save();
+            return view('reproductor', ['cancion' => $cancion]);
+        }
+    }
     /**
      * Display the specified resource.
      *

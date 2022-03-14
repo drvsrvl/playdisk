@@ -10,14 +10,14 @@
             data-period="500"
             data-rotate='[ "escoitar", "mercar", "compartir", "ordenar"]'></span>
             <br>a túa música favorita
-</div><br>
+        </div><br>
         <span class="subtituloindexesquerda">
             Únete á nosa comunidade e participa na conversa
         </span><br><br>
         <a href="/register"><button class="botonindexesquerda">Comezar</button></a>
     </div>
     <div class="svgdereita">
-        <img src="img/svg/compose.svg"></img>
+        <div class="img"></div>
     </div>
 </div>
 <div class="indextrending">
@@ -56,28 +56,23 @@
     </div>
     <div class="indexxeneros my-4">
        @foreach($xeneros as $xenero)
-            <a class="blanco" href="/xenero/{{$xenero->id}}"><button class="xenero blanco"><?php echo strtoupper($xenero->nome); ?></button></a>
+            <a class="blanco" href="/catalogo/{{$xenero->id}}"><button class="xenero blanco"><?php echo strtoupper($xenero->nome); ?></button></a>
         @endforeach
     </div>
 </div>
 
-<div class="novidades">
-<div class="tituloindexnovidades"> 
-<i class="bi bi-plus-circle"></i> NOVIDADES
+<div class="novidades" style="height:300px;">
+    <div class="tituloindexnovidades my-3"> 
+        <i class="bi bi-plus-circle"></i> NOVIDADES
     </div>
     @for ($i = 0; $i <= 0; $i++) 
-        
-        <div class="novidade" id="novidade{{$ultimosProdutos[$i]->id}}" onclick="link('album',{{$ultimosProdutos[$i]->id}})">
-            <div class="novidadeesquerda">
-                <div class="posicion">0{{$i+1}}</div>
-                <!--<img class="trendingportada" src="img/vibras.png"></img> -->
-            </div>
-            <div class="novidadetexto">
-                <div class="novidadetitulo">{{$ultimosProdutos[$i]->nome}}</div>
-                @foreach($ultimosProdutos[$i]->artistas as $artista)
-                    <a href="/artista/{{$artista->id}}"><div class="novidadeartista">{{$artista->nome}}</div></a>
-                @endforeach
-            </div>
+        <div class="fichaalbum mx-3" onclick="link('album',{{$ultimosProdutos[$i]->id}})">
+                    <img class="fichaalbum" width="100%" src="/img/caratula/{{$ultimosProdutos[$i]->caratula}}"></img>
+                    <div class="tituloficha" style="font-size:15px;">{{$ultimosProdutos[$i]->nome}}</div>
+                    @foreach($ultimosProdutos[$i]->artistas as $artista)
+                        <a href="/artista/{{$artista->id}}" style="color:white;"><div class="artistaficha" style="font-size:13px;">{{$artista->nome}}</div></a>
+                    @endforeach
+    
         </div>
        
     @endfor

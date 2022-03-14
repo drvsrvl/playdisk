@@ -5,6 +5,7 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\ArtistaController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ListaController;
+use App\Http\Controllers\XeneroController;
 use App\Http\Controllers\CancionController;
 use App\Http\Controllers\ComentarioController;
 /*
@@ -23,6 +24,8 @@ Route::get('/album/{id}', [ProdutoController::class, 'show']);
 
 Route::post('/album/{id}', [ComentarioController::class, 'store']);
 
+Route::get('/reproducir', [CancionController::class, 'reproducir']);
+
 Route::get('/comentario/eliminar/{id}', [ComentarioController::class, 'destroy']);
 
 Route::get('/', [ProdutoController::class, 'inicio']);
@@ -30,6 +33,8 @@ Route::get('/', [ProdutoController::class, 'inicio']);
 Route::get('buscadorindex', [ProdutoController::class, 'buscadorindex']);
 
 Route::get('/buscadormenu', [ProdutoController::class, 'buscadormenu']);
+
+Route::get('/filtrocatalogo', [ProdutoController::class, 'filtrocatalogo']);
 
 Route::get('/artista/{id}', [ArtistaController::class, 'show']);
 
@@ -98,6 +103,8 @@ Route::get('/artista', function () {
 });
 
 Route::get('/catalogo', [ProdutoController::class, 'index']);
+
+Route::get('/catalogo/{xenero}', [XeneroController::class, 'show']);
 
 Route::get('/lista', function () {
     return view('lista');

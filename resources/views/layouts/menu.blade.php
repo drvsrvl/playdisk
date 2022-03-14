@@ -13,7 +13,7 @@
             </ul>
         </div>
     </div>
-    <div class="dereita mx-4" style="display:flex; align-items:center;">
+    <div class="dereita mx-2" style="display:flex; align-items:center;">
         <div class="buscador mt-1" style="">
             <input type="text" placeholder="Busca aquí" id="inputbuscadormenu">
             <div class="contedormenuresultados" id="contedormenuresultados">
@@ -25,14 +25,22 @@
             <a href="/login"><button class="login">Login</button></a>
         </div>
         @else
-
-            <div class="dropdown mx-2">
+        <div class="cestamenu mx-2"
+            style="margin-top:3px; width:37px;height:37px;border:1px solid black;padding: 0 6px 0 6px;border-radius:50%;position:relative"
+            onclick="window.location.href('/cesta');">
+            <h5 style="padding-top:5px;padding-left:1px"><i class="bi bi-cart-fill"></i></h5>
+            <div class="notificacionmenu"
+                style="width:13px;height:13px;background-color:white;color:black;border:1px solid black;border-radius:50%;position:absolute;right:0;top:0;display:flex;justify-content:center;align-items:center">
+                <span style="font-size:9px">1</span>
+            </div>
+        </div>
+            <div class="dropdown mx-4">
                 <div class="nomeperfildropdown mt-1 pr-1" 
                     style="display:flex; align-items:center;border:1px solid black;border-radius:40px;background-color:black;color:white;min-width:130px;">
                     <div class="" style="width:35px;height:35px;overflow:hidden;display:inline-block;position:relative;border-radius:50%;border: 1px solid black;
                         ">
                         <img class="perfilfoto" src="/img/perfil/{{Auth::user()->perfil->foto}}"></img>
-                    </div><span class="mx-2" style="font-weight:500">{{Auth::user()->perfil->login}}</span> <i class="bi bi-caret-down-fill mx-1"></i>
+                    </div><span class="mx-3" style="font-weight:500">{{Auth::user()->perfil->login}}</span> <i class="bi bi-caret-down-fill mx-1"></i>
                 </div>
                 <div class="dropdownmenu">
                     <a href="/perfil/{{Auth::user()->perfil->id}}">Perfil</a>

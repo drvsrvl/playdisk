@@ -56,6 +56,7 @@ var TxtRotate = function(el, toRotate, period) {
   };
 
 function verlistas(cancionid) {
+  event.stopPropagation();
   document.getElementById("scriptlistas").classList.toggle('show');
   document.getElementById("menutrack" + cancionid).classList.toggle('click');
   document.getElementById("idcancion").value = cancionid;
@@ -95,4 +96,39 @@ function eliminarcomentario(id) {
 
 function outeliminarcomentario(id) {
   document.getElementById('eliminarcomentario'+id).classList.toggle('notshow');
+}
+
+function reproducir(id) {
+  var playing = document.getElementById('playing' + id);
+  if (playing.value == 'false') {
+    var data={"id":id};
+    $.ajax({
+        type: "GET",
+        url: "/reproducir",
+        data: data,
+        success: function (data) {
+            document.getElementById('espazoreproductor').innerHTML = data;
+            document.getElementById('cancion' + id).classList.toggle("play");
+            playing.value = 'play';
+            document.getElementById("pepaxina").style.paddingBottom = "70px";
+            document.getElementById("pepaxina").style.height = "120px";
+        }
+    });
+  } else if (playing.value == 'play') {
+      document.getElementById('reproduccion' + id).pause();
+      playing.value = 'pause';
+      document.getElementById('cancion' + id).classList.remove("play");
+  } else if (playing.value == 'pause') {
+    document.getElementById('reproduccion' + id).play();
+    document.getElementById('cancion' + id).classList.toggle("play");
+    playing.value = 'play';
+  }
+}
+
+function closereproductor(id){
+  document.getElementById('espazoreproductor').innerHTML = "";
+  document.getElementById('playing' + id).value = 'false';
+  document.getElementById('cancion' + id).classList.remove("play");
+  document.getElementById("pepaxina").style.paddingBottom = "0";
+  document.getElementById("pepaxina").style.height = "50px";
 }

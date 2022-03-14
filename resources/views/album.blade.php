@@ -8,7 +8,7 @@
             <span class="tituloalbum">{{$produto->nome}}</span>
             <span class="artista">@foreach($produto->artistas as $artista)<a href="/artista/{{$artista->id}}">{{$artista->nome}}</a> @endforeach</span>
         </div>
-        <img src="/img/caratula/{{$produto->caratula}}" id="img" width="50%"></img>
+        <img src="/img/caratula/{{$produto->caratula}}" id="imgportada" width="50%"></img>
         <span class="desc">Universal Music - 2018</span>
     </div>
     <div class="albumtexto">
@@ -16,10 +16,13 @@
             <input id="idcancion" type="hidden" value="">
             <div class="tracklist">
                 @foreach($produto->cancions as $cancion)
-                <div class="cancion" id="cancion1" onmouseover="play({{$cancion->id}});" onmouseout="dontplay({{$cancion->id}});">
+                <div class="cancion" id="cancion{{$cancion->id}}" onmouseover="play({{$cancion->id}});" onmouseout="dontplay({{$cancion->id}});"
+                    onclick="reproducir({{$cancion->id}})">
+                    <input type="hidden" id="playing{{$cancion->id}}" value="false">
                     <span class="play">
                         <h2 id="numCancion{{$cancion->id}}" class="numCancion show">{{$cancion->numero_produto}}</h2>
                         <h2 id="simPlay{{$cancion->id}}" class="simPlay" style="margin-top:3px;">▶︎</h2>
+                        <h2 id="pause{{$cancion->id}}" class="simPlay" style="margin-top:3px;"><i class="bi bi-pause-fill"></i></h2>
                     </span>
                     <span class="medio">
                         <span class="titulocancion">{{$cancion->nome}}</span>
@@ -44,7 +47,7 @@
             <h2>Descripción</h2>
             <div class="xeneros">
                 @foreach($produto->xeneros as $xenero)
-                <a href="/xenero/{{$xenero->id}}"><button class="xenero" class="ml-2"><?php echo strtoupper($xenero->nome); ?></button></a>
+                <a href="/catalogo/{{$xenero->id}}"><button class="xenero" class="ml-2"><?php echo strtoupper($xenero->nome); ?></button></a>
                 @endforeach
             </div>
             <div class="my-2 mr-4">
@@ -102,7 +105,9 @@
                 </div>
             </div>
     @endforeach
-        
+
+        </div>
+        <div id="espazoreproductor" style="width:100%">
         </div>
 </div>
 
@@ -119,22 +124,22 @@
             url: "/album/{{$produto->id}}",
             data: data,
             success: function (data) {
+                $("#novoComentario").fadeIn();
                 document.getElementById('novoComentario').innerHTML += data;
-                $("#novoComentario").fadeIn(3000);
+
             }
         });
     };
 
-    
+    document.getElementById("infoalbum").style.background = "linear-gradient(200deg, lightgrey 0%, white 150%)";
      $(window).ready(function(){
-        
-        var sourceImage = document.getElementById("img");
+        var sourceImage = document.getElementById("imgportada");
         var colorThief = new ColorThief();
         var color = colorThief.getColor(sourceImage);
+        if(color) {
         document.getElementById("infoalbum").style.background = "linear-gradient(200deg, rgb(" + color + ") 0%, white 300%)";
         /*document.getElementById("menu").style.backgroundColor = "rgb(" + color + ")";*/
-
-        
+        }
         });
 </script>
 

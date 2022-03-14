@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Xenero;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class XeneroController extends Controller
@@ -44,9 +45,20 @@ class XeneroController extends Controller
      * @param  \App\Models\Xenero  $xenero
      * @return \Illuminate\Http\Response
      */
-    public function show(Xenero $xenero)
+    public function show($id)
     {
-        //
+        $xenero = Xenero::find($id);
+        $produtos = Produto::all();
+        $produtosXenero = [];
+        $xeneros = Xenero::all();
+        foreach ($produtos as $produto) {
+            foreach($produto->xeneros as $xeneroProd) {
+                if($xeneroProd->id == $xenero->id) {
+                    $produtosXenero[] = $produto;
+                }
+            }
+        };
+        return view('xenero', ['xeneroBuscado' => $xenero, 'produtos' => $produtosXenero, 'xeneros' => $xeneros]);
     }
 
     /**

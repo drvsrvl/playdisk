@@ -6,18 +6,7 @@
     <h2 class="titulocabeceiracatalogo text-center py-3">CATÁLOGO</h2>
 <div class="corpocatalogo py-3">
     <div class="filtrocatalogo">
-        <h3>Ordenar por: </h3>
-        <select id="filtro" name="filtro" class="seleccionfiltro mx-3">
-            <optgroup label="Engadidos">
-                <option selected="selected" value="ultimos">Engadidos (último-primeiro)</option> 
-            </optgroup>
-            <optgroup label="Orde alfabética">
-                <option value="alfabetica">Orde alfabética (A-Z)</option>
-            </optgroup>
-            <optgroup label="Data de saída">
-                <option value="datasaida">Data de saída (último-primeiro)</option>
-            </optgroup>
-        </select>
+            <a href="/catalogo"><button class="xenero blanco"><?php echo strtoupper($xeneroBuscado->nome); ?><i class="bi bi-x"></i></h3></button></a>
     </div>
     <div class="divcorpocatalogo">
         <div id="albumescatalogo" class="albumescatalogo py-4" 
@@ -43,21 +32,5 @@
     </div>
 </div>
 </div>
-<script>
-            $(document).ready(function() {
-                $('#filtro').on('change',function () {
-                    var buscar = $(this).val();
-                    var data={"filtro":buscar};
-                    $.ajax({
-                        type: "GET",
-                        url: "/filtrocatalogo",
-                        data: data,
-                        success: function (data) {
-                            document.getElementById('albumescatalogo').innerHTML = data;
-                        }
-                    });
-            });
-        });
-</script>
 
 @stop

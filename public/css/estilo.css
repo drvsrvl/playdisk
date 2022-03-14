@@ -8,7 +8,9 @@ html {
 body {
     margin-top: 75px;
     background-color: black;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
+    min-height: calc(100vh - 75px);
+    position: relative;
 }
 
 ::selection {
@@ -62,7 +64,11 @@ div.esquerda{
 }
 
 div.identidade h1{
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    background: linear-gradient(190deg, rgb(0, 0, 0) 20%, rgb(119, 119, 119) 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 500;
 }
 div.identidade a {
     text-decoration: none;
@@ -105,6 +111,17 @@ button.login {
     border-radius: 20px;
     background-color: black;
     transition: 0.2s ease;
+}
+
+div.notificacionmenu {
+    transition: 0.2s all ease;
+} 
+div.cestamenu:hover {
+    cursor:pointer;
+}
+
+div.cestamenu:hover div.notificacionmenu {
+    background-color: red;
 }
 
 /*button.login:hover {
@@ -157,7 +174,7 @@ div.dropdown:hover div.dropdownmenu {
 }
 div.dereita {
     display:flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 
@@ -218,6 +235,7 @@ div.indexportada {
     border-bottom: 1px solid black;
     background-color: #f5f5dc;
     display:flex;
+    justify-content: space-between;
     background: rgb(149,182,107);
     background: linear-gradient(197deg, rgba(149,182,107,1) 0%, rgba(253,255,254,1) 100%);
     overflow: hidden;
@@ -260,18 +278,8 @@ button.botonindexesquerda:hover {
 }
 
 div.svgdereita {
-    width: 40%;
+    width: 28%;
     height: 100%;
-    right:0;
-    z-index:0;
-    position:absolute;
-    padding-right:50px;
-    padding-top:20px;
-}
-
-div.svgdereita img {
-    width:100%;
-
 
 }
 
@@ -293,7 +301,7 @@ div.trend {
     width: 33%;
     display: flex;
     align-items: center;
-    justify-content: center;
+  
     padding: 10px;
     border-radius: 10px;
     
@@ -362,7 +370,7 @@ div.trend:hover div.posicion {
         background-color: black;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 15px;
         text-align: center;
-        z-index:5;
+        z-index:1;
     }
 
     input.indexbuscador:hover {
@@ -380,7 +388,7 @@ div.trend:hover div.posicion {
         padding-bottom:20px;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
-        z-index:2;
+        z-index:0;
         top:0;
         position:absolute;
         opacity: 0.8;
@@ -572,6 +580,10 @@ div.cancion {
     margin: 10px 0 10px 0;
 }
 
+div.cancion.play {
+    background-color: white;
+}
+
 div.cancion:hover {
     cursor: pointer;
     background-color: white;
@@ -730,8 +742,6 @@ div.comentarios button.enviar:hover {
 
 div.cabeceiracatalogo {
     width: 100%;
-    height: 15vh;
-    background-color: white;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -739,9 +749,13 @@ div.cabeceiracatalogo {
 }
 
 h2.titulocabeceiracatalogo {
-    font-size: 4em;
+    font-size: 3em;
     color: black;
     text-shadow: rgba(160, 160, 160, 0.2) 0px 4px 34px;
+    font-weight: 600;
+    background: linear-gradient(20deg, rgb(0, 0, 0) 20%, rgb(119, 119, 119) 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 div.corpocatalogo {
@@ -750,7 +764,7 @@ div.corpocatalogo {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: linear-gradient(180deg, rgb(197, 202, 231) 0%, rgb(53, 52, 107) 70%, rgb(0, 0, 0) 100%);
+    
 }
 
 div.filtrocatalogo {
@@ -758,11 +772,11 @@ div.filtrocatalogo {
     display:flex;
     justify-content: center;
     align-items: center;
-    margin: 15px 0 20px 0;
+    margin: -10px 0 20px 0;
 }
 
 div.filtrocatalogo h3 {
-    font-size: 1.5em;
+    font-size: 1.2em;
     margin-top: 5px;
     font-weight: 400;
 }
@@ -774,15 +788,15 @@ select.seleccionfiltro {
 	-moz-appearance: none;
     border-radius: 0px;
     height: 35px;
-    font-size: 1.3em;
+    font-size: 1.2em;
     border: none;
     background:transparent;
+    border-bottom: 1px solid black;
     outline: none;
     transition: all 0.25s ease;
 }
 
 select.seleccionfiltro:hover {
-    padding-left: 5px;
     cursor: pointer;
 }
 
@@ -1162,6 +1176,34 @@ div.tituloplaylistperfil {
     margin-left: 30px;
 }
 
+/* Estilos do reproductor */
+
+div.divreproductormp3 {
+    width:100%;
+    height:70px;
+    background-color:black;
+    color:white;
+    position:fixed;
+    bottom:0;
+    left:0;
+    text-align: center;
+    font-size: 13px;
+    background: linear-gradient(30deg, rgb(44, 44, 44) 0%, rgb(12, 12, 12) 100%);
+    box-shadow: rgba(19, 18, 18, 0.2) 0px 4px 24px;
+    z-index:2;
+}
+
+.cancionreproductormp3 {
+    width:70%;
+    margin: 0 auto;
+}
+
+div.closereproductor:hover {
+    cursor:pointer;
+    color:red;
+}
+
+
 /* Estilos do pé de páxina */
 
 div.pepaxina {
@@ -1178,4 +1220,8 @@ div.pepaxina {
 
 div.pepaxina h2 {
     margin-left:25px;
+    background: linear-gradient(180deg, rgb(228, 228, 228) 0%, rgb(85, 85, 85) 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
 }

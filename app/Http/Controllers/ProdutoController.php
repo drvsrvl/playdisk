@@ -19,7 +19,7 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $produtos = Produto::all();
+        $produtos = Produto::orderby('data','desc')->get();
         $xeneros = Xenero::all();
         return view('catalogo', ['produtos' => $produtos, 'xeneros' => $xeneros]);
     }
@@ -76,7 +76,7 @@ class ProdutoController extends Controller
             'dataLanzamento' => 'required'
         ]);
         if($validated) { //no caso de ser válidos
-            if($request->hasfile('foto')){
+            if($request->hasfile('caratula')){
                 $foto = $request->file('caratula');
                 $nome = "produto" . $id;
                 $extension = $foto->guessExtension();
@@ -148,6 +148,21 @@ class ProdutoController extends Controller
         return view('adminalbumes', ['produtos' => $produtos]);
     }
 
+    public function filtrocatalogo(Request $request) {
+        if($request->ajax()) {
+            $ultimosProdutos = Produto::orderby('data','desc')->get();
+            $alfabetico = Produto::orderby('nome','asc')->get();
+            $ordesaida = Produto::orderby('data_lanzamento','desc')->get();
+            if($request->filtro == 'ultimos') {
+                return view('filtrocatalogo', ['produtos' => $ultimosProdutos]);
+            } else if ($request->filtro == 'alfabetica') {
+                return view('filtrocatalogo', ['produtos' => $alfabetico]);
+            } else if ($request->filtro == 'datasaida') {
+                return view('filtrocatalogo', ['produtos' => $ordesaida]);
+            }
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -178,7 +193,7 @@ class ProdutoController extends Controller
         if($validated) { //no caso de ser válidos
             $produto = Produto::find($id); //buscamos o nodo con esa id
             $nomefoto = $produto->caratula; //recuperamos o valor do nome da imaxe
-            if($request->hasfile('foto')){
+            if($request->hasfile('caratula')){
                 $foto = $request->file('caratula');
                 $nome = "produto" . $id;
                 $extension = $foto->guessExtension();
