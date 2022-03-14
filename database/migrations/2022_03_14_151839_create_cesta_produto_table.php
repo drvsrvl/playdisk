@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePerfilsTable extends Migration
+class CreateCestaProdutoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,25 +13,22 @@ class CreatePerfilsTable extends Migration
      */
     public function up()
     {
-        Schema::create('perfils', function (Blueprint $table) {
-            $table->id();
-            $table->string('login');
-            $table->string('rol')->default('user');
-            $table->tinyText('descripcion');
-            $table->bigInteger('user_id')->unsigned();
+        Schema::create('cesta_produto', function (Blueprint $table) {
+            $table->bigInteger('produto_id')->unsigned();
             $table->bigInteger('cesta_id')->unsigned();
-            $table->string('foto')->default('default.png');
-            $table->timestamps();
-            $table->foreign('user_id')
+            $table->foreign('produto_id')
                 ->references('id')
-                ->on('users')
+                ->on('produtos')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreign('cesta_id')
+            $table->foreign('cesta')
                 ->references('id')
                 ->on('cestas')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->bigInteger('cantidade');
+            $table->primary(['cesta_id', 'produto_id']);
+            $table->timestamps();
         });
     }
 
@@ -42,6 +39,6 @@ class CreatePerfilsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perfils');
+        Schema::dropIfExists('cesta_produto');
     }
 }

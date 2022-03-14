@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Models\Comentarios;
 use App\Models\Lista;
 use App\Models\User;
+use App\Models\Cesta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +13,9 @@ class Perfil extends Model
     use HasFactory;
     public function usuario() {
         return $this->hasOne(User::class);
+   }
+   public function cesta() {
+        return $this->hasOne(Cesta::class);
    }
     public function comentarios() {
         return $this->hasMany(Comentario::class);

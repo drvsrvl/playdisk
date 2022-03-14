@@ -1,7 +1,7 @@
 @extends('layouts.master')
-@section('title', 'index')
+@section('title') &#64{{$perfil->login}} @stop
 @section('contido')
-<div style="width=100%; background: linear-gradient(180deg, rgb(17, 10, 92) 20%, rgb(0, 0, 0) 100%);">
+<div style="width:100%; background: linear-gradient(180deg, rgb(17, 10, 92) 20%, rgb(0, 0, 0) 100%);">
 <br/><br/>
     <div class="perfilinfo">
         <div style="width:100px;height:100px;overflow:hidden;display:inline-block;position:relative;border-radius:50%;

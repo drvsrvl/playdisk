@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'index')
+@section('title', 'catálogo')
 @section('contido')
 <div style="width:100%;background: linear-gradient(180deg, rgb(197, 202, 231) 0%, rgb(53, 52, 107) 70%, rgb(0, 0, 0) 100%);">
 

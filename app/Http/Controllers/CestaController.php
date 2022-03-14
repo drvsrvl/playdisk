@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cesta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CestaController extends Controller
 {
@@ -14,7 +16,8 @@ class CestaController extends Controller
      */
     public function index()
     {
-        //
+        $cesta = Cesta::find(Auth::user()->perfil->cesta->id);
+        return view('cesta', ['cesta' => $cesta]);
     }
 
     /**

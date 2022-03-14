@@ -18,12 +18,49 @@ class PerfilController extends Controller
      */
     public function index()
     {
-        //
+        $perfils = Perfil::all();
+        return view('adminusuarios', ['perfils' => $perfils]);
     }
 
     public function adminpanel() {
         return view('admin');
     }
+    
+    public function adminedit($id) {
+        $perfil = Perfil::find($id);
+        return view('admineditusuario', ['perfil' => $perfil]);
+    }
+    public function adminupdate(Request $request, $id)
+    {
+        $validated = $request->validate([ //validamos os campos
+            'login' => 'required|string',
+            'descripcion' => 'required|string',
+            'rol' => 'required|string'
+        ]);
+        if($validated) { //no caso de ser válidos
+            $perfil = Perfil::find($id); //buscamos o nodo con esa id
+            $nomefoto = $perfil->foto; //recuperamos o valor do nome da imaxe
+            if($request->hasfile('foto')){
+                $foto = $request->file('foto');
+                $nome = "perfil" . $id;
+                $extension = $foto->guessExtension();
+                $nomefoto = "$nome.$extension"; //poñémoslle de nome o timestamp coa extensión
+                $foto->move(public_path('img/perfil'),$nomefoto); //e movémola á carpeta de imaxes da entrada
+            }
+            DB::update('update perfils set login=?, foto=?, descripcion=?, rol=? where id="' . $id . '"',
+                [
+                    $request->login,
+                    $nomefoto,
+                    $request->descripcion,
+                    $request->rol
+                ]);  //facemos a consulta preparada e pasámoslle os parámetros indicados
+            return redirect()->action([PerfilController::class, 'index']); //rediriximos á vista detallada do nodo co id indicado
+        }
+        else {
+
+        }
+    }
+    
 
     /**
      * Show the form for creating a new resource.

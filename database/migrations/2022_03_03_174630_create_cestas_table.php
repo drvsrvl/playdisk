@@ -15,6 +15,12 @@ class CreateCestasTable extends Migration
     {
         Schema::create('cestas', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('perfil_id')->unsigned();
+            $table->foreign('perfil_id')
+                ->references('id')
+                ->on('perfils')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -27,7 +27,7 @@
         @else
         <div class="cestamenu mx-2"
             style="margin-top:3px; width:37px;height:37px;border:1px solid black;padding: 0 6px 0 6px;border-radius:50%;position:relative"
-            onclick="window.location.href('/cesta');">
+            onclick="window.location.href = '/cesta';">
             <h5 style="padding-top:5px;padding-left:1px"><i class="bi bi-cart-fill"></i></h5>
             <div class="notificacionmenu"
                 style="width:13px;height:13px;background-color:white;color:black;border:1px solid black;border-radius:50%;position:absolute;right:0;top:0;display:flex;justify-content:center;align-items:center">

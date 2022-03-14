@@ -15,7 +15,7 @@
             <a class="blanco" href="/admin/albumes"><h3>Administrar álbumes</h3></a>
         </div>
         <div>
-            <a class="blanco" href="/admin/usuarios"><h3>Administrar usuarios</h3></a>
+            <a class="blanco" href="/admin/perfils"><h3>Administrar perfís</h3></a>
             <br/>
             <a class="blanco" href="/admin/xeneros"><h3>Administrar xéneros</h3></a>
         </div>

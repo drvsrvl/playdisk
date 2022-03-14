@@ -7,6 +7,7 @@ use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\XeneroController;
 use App\Http\Controllers\CancionController;
+use App\Http\Controllers\CestaController;
 use App\Http\Controllers\ComentarioController;
 /*
 |--------------------------------------------------------------------------
@@ -72,13 +73,19 @@ Route::get('/admin/album', [ProdutoController::class, 'create'])->middleware('ad
 
 Route::post('/admin/album', [ProdutoController::class, 'store'])->middleware('admin');
 
+
 //Rutas de edición de canción
 
 Route::post('/admin/cancion', [CancionController::class, 'store'])->middleware('admin');
 
-//Rutas de edición de perfís por parte do administrador
+//Rutas de edición de usuarios por parte do administrador
 
-Route::get('/admin/perfiles', [PerfilController::class, 'admin'])->middleware('admin');
+Route::get('/admin/perfils', [PerfilController::class, 'index'])->middleware('admin');
+
+Route::get('/admin/perfil/{id}', [PerfilController::class, 'adminedit'])->middleware('admin');
+
+Route::post('/admin/perfil/{id}', [PerfilController::class, 'adminupdate'])->middleware('admin');
+
 
 Route::get('/admin/xeneros', [XeneroController::class, 'admin'])->middleware('admin');
 
@@ -101,6 +108,8 @@ Route::get('/desvincular/{cancionid}/{listaid}', [ListaController::class, 'desvi
 Route::get('/artista', function () {
     return view('artista');
 });
+
+Route::get('/cesta', [CestaController::class, 'index'])->middleware('auth');
 
 Route::get('/catalogo', [ProdutoController::class, 'index']);
 
