@@ -51,6 +51,13 @@
                     <input type="date" name="dataLanzamento"
                     style="background:none;border: 1px solid grey; color: white; outline: none;">
             </div>
+            <div class="my-5" style="display:flex;align-items:center;justify-content:center;width:100%;flex-direction:row;align-items:center"><!-- comment -->
+                Xéneros<br/><!-- comment -->
+                @foreach($xeneros as $xenero)
+                    <input type="checkbox" name="xeneros[]" value="{{$xenero->id}}" 
+                           >{{$xenero->nome}}
+                @endforeach
+            </div>
             <div class="pb-4" style="display:flex;width:100%;justify-content:center;">
                 <button 
                     type="submit"

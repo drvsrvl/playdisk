@@ -38,7 +38,58 @@ class CestaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cesta = Auth::user()->perfil->cesta;
+        foreach($cesta->produtos as $produto) {
+            foreach($produto->formatos as $formato) {
+                $produto_id = $produto->id;
+                if($formato->id == $produto->pivot->formato_id) {
+                    $formato_id = $formato->id;
+                    $cantidade = intval($produto->pivot->cantidade);
+                        if($formato->id == $request->formato_id && $produto_id == $request->produto_id) {
+                          DB::update('update cesta_produto set cantidade=? where (cesta_id="' . $cesta->id . '") and (formato_id="' . $formato_id . '") and (produto_id="' . $produto_id . '")',
+                            [
+                                $cantidade+1
+                            ]);
+                          return view('taboacesta', ['cesta' => Auth::user()->perfil->cesta]);
+                        }
+                }
+                    
+            }
+        }
+            DB::insert('insert into cesta_produto (cesta_id, produto_id, cantidade, formato_id) values (?, ?, ?, ?)',
+                [
+                    $cesta->id,
+                    $request->produto_id,
+                    1,
+                    $request->formato_id
+                ]);  //facemos a ccomentarioonsulta preparada e pasámoslle os parámetros indicado
+            return true;
+    }
+    
+    public function quitar(Request $request)
+    {
+        $cesta = Auth::user()->perfil->cesta;
+        foreach($cesta->produtos as $produto) {
+            foreach($produto->formatos as $formato) {
+                $produto_id = $produto->id;
+                if($formato->id == $produto->pivot->formato_id) {
+                    $formato_id = $formato->id;
+                    $cantidade = intval($produto->pivot->cantidade);
+                    if($formato->id == $request->formato_id && $produto_id == $request->produto_id) {
+                        if($cantidade - 1 != 0) {
+                          DB::update('update cesta_produto set cantidade=? where (cesta_id="' . $cesta->id . '") and (formato_id="' . $formato_id . '") and (produto_id="' . $produto_id . '")',
+                            [
+                                $cantidade-1
+                            ]);
+                        } else {
+                            DB::delete('delete from cesta_produto where (cesta_id="' . $cesta->id . '") and (formato_id="' . $formato_id . '") and (produto_id="' . $produto_id . '")');
+                        }
+                    }
+                }
+                    
+            }
+        }
+        return view('taboacesta', ['cesta' => Auth::user()->perfil->cesta]);
     }
 
     /**

@@ -60,10 +60,11 @@
             <h2>Mercar</h2>
             <table class="prezo">
                 @foreach($produto->formatos as $formato)
-                <tr>
+                <tr onclick="formatoCesta({{$produto->id}}, {{$formato->id}})">
+                    <input type="hidden" id="produto_id" value="">
                     <td>{{$produto->nome}}</td>
                     <td>{{$formato->nome}}</td>
-                    <td>{{$formato->prezo}} €</td>
+                    <td>{{$formato->pivot->prezo}} €</td>
                 </tr>
                 @endforeach
             </table>
@@ -127,6 +128,21 @@
                 $("#novoComentario").fadeIn();
                 document.getElementById('novoComentario').innerHTML += data;
 
+            }
+        });
+    };
+    
+    function formatoCesta(produtoid, formatoid) {
+        var token = '{{csrf_token()}}';// ó $("#token").val() si lo tienes en una etiqueta html.
+        var data={produto_id:produtoid, formato_id:formatoid, _token:token};
+        $.ajax({
+            type: "post",
+            url: "/cesta/engadir",
+            data: data,
+            success: function (data) {
+                var notificacion = document.getElementById('notificacionmenu');
+                notificacion.innerHTML = parseInt(notificacion.innerHTML) + 1;
+         
             }
         });
     };

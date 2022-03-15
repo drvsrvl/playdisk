@@ -10,6 +10,6 @@ class Formato extends Model
     use HasFactory;
     
     public function produtos() {
-        return $this->belongsToMany(Produto::class);
+        return $this->belongsToMany(Produto::class)->withPivot('prezo');
     }
 }

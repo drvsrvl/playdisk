@@ -86,8 +86,9 @@ Route::get('/admin/perfil/{id}', [PerfilController::class, 'adminedit'])->middle
 
 Route::post('/admin/perfil/{id}', [PerfilController::class, 'adminupdate'])->middleware('admin');
 
+Route::get('/admin/xenero', [XeneroController::class, 'admin'])->middleware('admin');
 
-Route::get('/admin/xeneros', [XeneroController::class, 'admin'])->middleware('admin');
+Route::post('/admin/xenero', [XeneroController::class, 'store'])->middleware('admin');
 
 Route::get('/listanova', [ListaController::class, 'create'])->middleware('auth');
 
@@ -110,6 +111,10 @@ Route::get('/artista', function () {
 });
 
 Route::get('/cesta', [CestaController::class, 'index'])->middleware('auth');
+
+Route::post('/cesta/engadir', [CestaController::class, 'store'])->middleware('auth');
+
+Route::post('/cesta/quitar', [CestaController::class, 'quitar'])->middleware('auth');
 
 Route::get('/catalogo', [ProdutoController::class, 'index']);
 

@@ -34,10 +34,7 @@ class XeneroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    
 
     /**
      * Display the specified resource.
@@ -67,9 +64,23 @@ class XeneroController extends Controller
      * @param  \App\Models\Xenero  $xenero
      * @return \Illuminate\Http\Response
      */
-    public function edit(Xenero $xenero)
+    public function admin()
     {
-        //
+        return view('adminnovoxenero');
+    }
+    
+    public function store(Request $request) {
+       $validated = $request->validate([ //validamos os campos
+            'nome' => 'required|string',
+            'descripcion' => 'required|string'
+        ]);
+        if($validated) { //no caso de ser válidos
+            $xenero = new Xenero;
+            $xenero->nome = $request->nome;
+            $xenero->descripcion = $request->descripcion;
+            $xenero->save();
+        }
+        return route('/admin');
     }
 
     /**

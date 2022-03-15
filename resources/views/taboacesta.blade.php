@@ -1,16 +1,4 @@
-@extends('layouts.master')
-@section('title', 'cesta')
-@section('contido')
-
-<div style="width:100%;background: linear-gradient(180deg, rgb(45, 45, 45) 0%, rgb(0,0,0) 100%); padding-bottom:20px; padding-top: 30px; box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 24px;">
-    <div class="contidolista mt-2 pt-2">
-    <div class="infolista" style="justify-content:space-between; height:100px">
-            <h3>Cesta</h3>
-        </div>
-    <hr/>
-
-    <div class="cancionslista px-4" id="taboacesta">
-      @if(!empty($cesta->produtos))
+@if(!empty($cesta->produtos))
         <table>
             <tr>
                 <td>Produto</td><!-- comment -->
@@ -42,40 +30,3 @@
         @else 
         <h5 class="text-center">Non hai produtos que mostrar, diríxete ao noso <a href="/catalogo" class="blanco">catálogo</a> para explorar os distintos álbumes.</h5>
     @endif
-    </div>
-    
-</div>
-<br/>
-
-<script>
-   function modificar(tipo, produtoid, formatoid) {
-        var token = '{{csrf_token()}}';// ó $("#token").val() si lo tienes en una etiqueta html.
-        var data={produto_id:produtoid, formato_id:formatoid, _token:token};
-        if(tipo == 'sumar') {
-            $.ajax({
-                type: "post",
-                url: "/cesta/engadir",
-                data: data,
-                success: function (data) {
-                     var notificacion = document.getElementById('notificacionmenu');
-                    notificacion.innerHTML = parseInt(notificacion.innerHTML) + 1;
-                    $("#taboacesta").html(data);
-
-                }
-            });
-        } else if (tipo == 'restar') {
-            $.ajax({
-                type: "post",
-                url: "/cesta/quitar",
-                data: data,
-                success: function (data) {
-                     var notificacion = document.getElementById('notificacionmenu');
-                    notificacion.innerHTML = parseInt(notificacion.innerHTML) - 1;
-                    $("#taboacesta").html(data);
-                }
-            });
-        }
-    }; 
-</script>
-
-@stop

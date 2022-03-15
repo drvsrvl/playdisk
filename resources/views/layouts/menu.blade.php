@@ -25,14 +25,23 @@
             <a href="/login"><button class="login">Login</button></a>
         </div>
         @else
+        <?php
+            $cesta = Auth::user()->perfil->cesta;
+            $contador = 0;
+            foreach ($cesta->produtos as $produto) {
+                $contador += intval($produto->pivot->cantidade);
+            }
+        ?>
         <div class="cestamenu mx-2"
             style="margin-top:3px; width:37px;height:37px;border:1px solid black;padding: 0 6px 0 6px;border-radius:50%;position:relative"
             onclick="window.location.href = '/cesta';">
             <h5 style="padding-top:5px;padding-left:1px"><i class="bi bi-cart-fill"></i></h5>
-            <div class="notificacionmenu"
-                style="width:13px;height:13px;background-color:white;color:black;border:1px solid black;border-radius:50%;position:absolute;right:0;top:0;display:flex;justify-content:center;align-items:center">
-                <span style="font-size:9px">1</span>
-            </div>
+            @if($contador != 0)
+                <div class="notificacionmenu" 
+                    style="width:13px;height:13px;background-color:white;color:black;border:1px solid black;border-radius:50%;position:absolute;right:0;top:0;display:flex;justify-content:center;align-items:center">
+                    <span style="font-size:9px" id="notificacionmenu">{{$contador}}</span>
+                </div>
+            @endif
         </div>
             <div class="dropdown mx-4">
                 <div class="nomeperfildropdown mt-1 pr-1" 

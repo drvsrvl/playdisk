@@ -17,7 +17,7 @@
         <div>
             <a class="blanco" href="/admin/perfils"><h3>Administrar perfís</h3></a>
             <br/>
-            <a class="blanco" href="/admin/xeneros"><h3>Administrar xéneros</h3></a>
+            <a class="blanco" href="/admin/xenero"><h3>Novo xénero</h3></a>
         </div>
     </div>
     

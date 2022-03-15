@@ -14,6 +14,7 @@ class Cesta extends Model
    }
    
    public function produtos() {
-        return $this->belongsToMany(Produto::class)->withPivot('formato');
+        return $this->belongsToMany(Produto::class)->withPivot('formato_id', 'cantidade');
     }
+   
 }

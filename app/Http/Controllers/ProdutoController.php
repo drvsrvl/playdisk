@@ -58,7 +58,8 @@ class ProdutoController extends Controller
     public function create()
     {
         $artistas = Artista::all(); 
-        return view('adminnovoalbum', ['artistas' => $artistas]);
+        $xeneros = Xenero::all();
+        return view('adminnovoalbum', ['artistas' => $artistas, 'xeneros' => $xeneros]);
     }
 
     /**
@@ -73,7 +74,8 @@ class ProdutoController extends Controller
             'nome' => 'required|string',
             'descripcion' => 'required|string',
             'artista' => 'required',
-            'dataLanzamento' => 'required'
+            'dataLanzamento' => 'required',
+            'xeneros' => 'required'
         ]);
         if($validated) { //no caso de ser válidos
             if($request->hasfile('caratula')){
@@ -97,6 +99,10 @@ class ProdutoController extends Controller
                         intval($request->artista),
                         $lastID
                     ]);
+            foreach($request->xeneros as $xenero) {
+                $produto->xeneros()->attach($xenero);
+            }
+
             return redirect()->action([ProdutoController::class, 'admin']); //rediriximos á vista detallada do nodo co id indicado
         }
         else {
@@ -173,7 +179,8 @@ class ProdutoController extends Controller
     {
         $produto = Produto::find($id);
         $artistas = Artista::all(); 
-        return view('admineditalbum', ['produto' => $produto, 'artistas' => $artistas]);
+        $xeneros = Xenero::all();
+        return view('admineditalbum', ['produto' => $produto, 'artistas' => $artistas, 'xeneros' => $xeneros]);
     }
 
     /**
@@ -188,7 +195,8 @@ class ProdutoController extends Controller
         $validated = $request->validate([ //validamos os campos
             'nome' => 'required|string',
             'descripcion' => 'required|string',
-            'artista' => 'required'
+            'artista' => 'required',
+            'xeneros' => 'required'
         ]);
         if($validated) { //no caso de ser válidos
             $produto = Produto::find($id); //buscamos o nodo con esa id
@@ -200,6 +208,21 @@ class ProdutoController extends Controller
                 $nomefoto = "$nome.$extension"; //poñémoslle de nome o timestamp coa extensión
                 $foto->move(public_path('img/caratula'),$nomefoto); //e movémola á carpeta de imaxes da entrada
             }
+            foreach($request->xeneros as $xenero) {
+                $atopado = false;
+                foreach($produto->xeneros as $xeneroProd) {
+                    if($xenero == $xeneroProd->id) {
+                        $atopado = true;
+                    }
+                }
+                !$atopado ? $produto->xeneros()->attach($xenero) : "";
+            }
+            foreach($produto->xeneros as $xeneroProd) {
+                if(!in_array($xeneroProd->id, $request->xeneros)) {
+                    $produto->xeneros()->detach($xeneroProd->id);
+                }
+            }
+            
             DB::update('update produtos set nome=?, caratula=?, descripcion=?, data_lanzamento=?, data=? where id="' . $id . '"',
                 [
                     $request->nome,
