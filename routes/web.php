@@ -9,6 +9,7 @@ use App\Http\Controllers\XeneroController;
 use App\Http\Controllers\CancionController;
 use App\Http\Controllers\CestaController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\PedidoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -111,6 +112,8 @@ Route::get('/artista', function () {
 });
 
 Route::get('/cesta', [CestaController::class, 'index'])->middleware('auth');
+
+Route::post('/pedido', [PedidoController::class, 'store'])->middleware('auth');
 
 Route::post('/cesta/engadir', [CestaController::class, 'store'])->middleware('auth');
 

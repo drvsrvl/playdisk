@@ -7,6 +7,7 @@ use App\Models\Artista;
 use App\Models\Xenero;
 use App\Models\Comentario;
 use App\Models\Cesta;
+use App\Models\Pedido;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,6 +37,10 @@ class Produto extends Model
     
     public function cestas() {
         return $this->belongsToMany(Cesta::class);
+    }
+    
+    public function pedidos() {
+        return $this->belongsToMany(Pedido::class);
     }
     
 }

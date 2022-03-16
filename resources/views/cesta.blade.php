@@ -8,9 +8,14 @@
             <h3>Cesta</h3>
         </div>
     <hr/>
-
+    <?php
+    $contadorCesta = 0;
+        foreach($cesta->produtos as $produto) {
+            $contadorCesta++;
+        }
+    ?>
     <div class="cancionslista px-4" id="taboacesta">
-      @if(!empty($cesta->produtos))
+      @if($contadorCesta!=0)
         <table class="taboacesta">
             <tr class="cabeceira">
                 <td>PRODUTO</td><!-- comment -->
@@ -40,9 +45,12 @@
             <h5>Total IVE: {{$prezoTotal* 0.21}}€</h5>
             <h5>Prezo total: {{$prezoTotal += $prezoTotal* 0.21}}€</h5>
         </div>
+      <form action="/pedido" method="post">
+          @csrf
         <div class="text-center my-3">
-            <button class="login" style="border:1px solid grey; font-size:16px">Efectuar pedido</button>
+            <button type="submit" class="login" style="border:1px solid grey; font-size:16px">Efectuar pedido</button>
         </div>
+      </form>
         @else 
         <h5 class="text-center">Non hai produtos que mostrar, diríxete ao noso <a href="/catalogo" class="blanco">catálogo</a> para explorar os distintos álbumes.</h5>
     @endif
