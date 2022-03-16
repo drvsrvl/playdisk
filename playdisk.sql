@@ -148,7 +148,7 @@ CREATE TABLE `cesta_produto` (
   `produto_id` bigint UNSIGNED NOT NULL,
   `cantidade` bigint UNSIGNED NOT NULL,
   `formato_id` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A extraer os datos da táboa `cesta_produto`

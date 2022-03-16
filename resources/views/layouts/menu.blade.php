@@ -28,8 +28,10 @@
         <?php
             $cesta = Auth::user()->perfil->cesta;
             $contador = 0;
-            foreach ($cesta->produtos as $produto) {
-                $contador += intval($produto->pivot->cantidade);
+            if(!empty($cesta->produtos)) {
+                foreach ($cesta->produtos as $produto) {
+                    $contador += intval($produto->pivot->cantidade);
+                }
             }
         ?>
         <div class="cestamenu mx-2"

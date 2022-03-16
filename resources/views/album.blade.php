@@ -17,7 +17,7 @@
             <div class="tracklist">
                 @foreach($produto->cancions as $cancion)
                 <div class="cancion" id="cancion{{$cancion->id}}" onmouseover="play({{$cancion->id}});" onmouseout="dontplay({{$cancion->id}});"
-                    onclick="reproducir({{$cancion->id}})">
+                    @if(Auth::user()) onclick="reproducir({{$cancion->id}})" @else onclick="showError()" @endif>
                     <input type="hidden" id="playing{{$cancion->id}}" value="false">
                     <span class="play">
                         <h2 id="numCancion{{$cancion->id}}" class="numCancion show">{{$cancion->numero_produto}}</h2>
@@ -60,7 +60,7 @@
             <h2>Mercar</h2>
             <table class="prezo">
                 @foreach($produto->formatos as $formato)
-                <tr onclick="formatoCesta({{$produto->id}}, {{$formato->id}})">
+                <tr @if(Auth::user()) onclick="formatoCesta({{$produto->id}}, {{$formato->id}})" @else onclick="showError()" @endif>
                     <input type="hidden" id="produto_id" value="">
                     <td>{{$produto->nome}}</td>
                     <td>{{$formato->nome}}</td>
@@ -73,17 +73,21 @@
 </div>
 <div style="width:100%;background-color:white">
     <div class="comentarios pb-4">
+        @if(Auth::user())
         <form method="post" action="/album/{{$produto->id}}">
             @csrf
             <textarea name="comentario" class="comentario" id="comentario" placeholder="Escrebe aquí o teu comentario..."></textarea>
             <button type="button" class="enviar" onclick="novoComentario()">Enviar</button>
         </form>
+        @else
+        <p class="text-center"><a href="/login">Inicia sesión</a> ou <a href="/register">rexístrate</a> para deixar un comentario</p>
+        @endif
     </div>
         <div style="width:60%;margin:0 auto" class="pb-5">
             <div style="width:100%;" id="novoComentario"></div>
         @foreach($produto->comentarios->sortByDesc('data') as $comentario)
             <div style="display:flex;align-items:center;width:100%;" class="py-2" 
-                @if(Auth::user()->perfil->id == $comentario->perfil->id)
+                @if(Auth::user() && Auth::user()->perfil->id == $comentario->perfil->id)
                 onmouseover="eliminarcomentario({{$comentario->id}})" onmouseout="outeliminarcomentario({{$comentario->id}})"
                 @endif
             > 
@@ -110,6 +114,13 @@
         </div>
         <div id="espazoreproductor" style="width:100%">
         </div>
+</div>
+<div class="mensaxeerro" id="mensaxeerrodiv">
+<div id="mensaxeerro"
+    style="width:50%;background-color:black;position:fixed;bottom:40px;left:300px;z-index:4;color:white;border-radius:10px;
+    display:flex;justify-content:center;align-items:center;padding:10px;">
+    Debes iniciar sesión para realizar esta acción
+</div>
 </div>
 
 @include('layouts.scriptlistas')
@@ -146,6 +157,11 @@
             }
         });
     };
+
+    function showError() {
+        $("#mensaxeerrodiv").toggleClass('show');
+            $('#mensaxeerro').fadeOut(2000, () => { $("#mensaxeerrodiv").removeClass('show'); $('#mensaxeerro').fadeIn(100);});
+    }
 
     document.getElementById("infoalbum").style.background = "linear-gradient(200deg, lightgrey 0%, white 150%)";
      $(window).ready(function(){

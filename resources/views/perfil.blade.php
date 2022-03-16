@@ -22,7 +22,7 @@
         <div class="listasperfil py-4 pb-6">
             <div class="py-3 mx-3" style="display:flex;align-items:center;justify-content:space-between">
                 <h2>Listas</h2>
-                @if(Auth::user()->perfil->id == $perfil->id)
+                @if(Auth::user() && Auth::user()->perfil->id == $perfil->id)
                 <div class="divconfig verde mr-4" onclick="window.location.href='/listanova'">
                     <h5><i class="bi bi-plus-square-fill"></i> Nova lista</h5>
                 </div>

@@ -24,7 +24,7 @@
                 {{$lista->descripcion}}
             </div>
         </div>
-        @if($lista->perfil->id == Auth::user()->perfil->id)
+        @if(Auth::user() && $lista->perfil->id == Auth::user()->perfil->id)
             <div
                 class="divconfig"
                 style="position:relative;top:0;right:0;"
@@ -35,12 +35,13 @@
     </div>
     <hr/>
     <div class="cancionslista">
+        <?php $contador = 1 ?>
         @foreach($lista->cancions as $cancion)
             <div class="playlistcancion my-2" onmouseover="play({{$cancion->id}});" onmouseout="dontplay({{$cancion->id}});" onclick="reproducir({{$cancion->id}})">
                 <div class="esquerdaplaylist" style="width:50%;overflow:hide">
                 <input type="hidden" id="playing{{$cancion->id}}" value="false">
                 <span class="play">
-                            <h2 id="numCancion{{$cancion->id}}" class="numCancion show">{{1}}</h2>
+                            <h2 id="numCancion{{$cancion->id}}" class="numCancion show">{{$contador}}</h2>
                             <h2 id="simPlay{{$cancion->id}}" class="simPlay">▶︎</h2>
                         </span>
                     <img class="imaxeplaylist" height="100%" src="/img/caratula/{{$cancion->produto->caratula}}"></img>
@@ -52,6 +53,7 @@
                     <div class="numcancionsplaylist">{{$cancion->duracion}}</div>
                 </div>
             </div>
+            <?php $contador++ ?>
         @endforeach
     </div>
 </div>

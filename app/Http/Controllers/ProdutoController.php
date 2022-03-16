@@ -119,8 +119,11 @@ class ProdutoController extends Controller
     public function show($id)
     {
         $produto = Produto::find($id);
-        $perfil = Auth::user()->perfil;
-        return view('album', ['produto' => $produto, 'perfil' => $perfil]);
+        if(Auth::user()) {
+            $perfil = Auth::user()->perfil;
+            return view('album', ['produto' => $produto, 'perfil' => $perfil]);
+        }
+        return view('album', ['produto' => $produto]);
     }
     
     public function inicio() {

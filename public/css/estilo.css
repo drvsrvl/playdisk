@@ -227,6 +227,17 @@ div.duracion {
     margin-top: 17px;
 }
 
+/* Estilos de mensaxe erro */
+
+div.mensaxeerro {
+    display: none;
+    
+
+}
+
+div.mensaxeerro.show {
+    display:flex;
+}
 /* Estilos da vista de index */
 
 div.indexportada {
@@ -499,6 +510,56 @@ div.trend:hover div.posicion {
         /*background: linear-gradient(90deg, rgba(154,62,255,1) 0%, rgba(255,255,255,1) 100%);*/
     }
     
+/* Estilos de vista de cesta */
+
+table.taboacesta {
+    width:90%;
+    margin:0 auto;
+    text-align: end;
+}
+
+tr.cabeceira {
+    font-size: 13px;
+    font-weight: 600;
+    color:lightgrey;
+}
+
+tr.produtos {
+    font-weight:600;
+}
+tr.produtos td {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+td.tablainfoproduto {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.informacioncesta {
+    margin-top:15px;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.informacioncesta h5 {
+    font-size:15px;
+    font-weight: 600;
+    color:lightgray;
+}
+
+button.modificarcesta {
+    width:30px;
+    font-size:20px;
+    background:none;
+    border:none;
+    color:white;
+}
+
 /* Estilos da vista de álbum */
 
 div.infoalbum {
