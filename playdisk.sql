@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Xerado en: 16 de Mar de 2022 ás 17:59
+-- Xerado en: 17 de Mar de 2022 ás 19:10
 -- Versión do servidor: 8.0.28-0ubuntu0.20.04.3
 -- Versión do PHP: 7.4.3
 
@@ -48,6 +48,26 @@ INSERT INTO `artistas` (`id`, `nome`, `descripcion`, `foto`, `created_at`, `upda
 -- --------------------------------------------------------
 
 --
+-- Estrutura da táboa `artista_cancion`
+--
+
+CREATE TABLE `artista_cancion` (
+  `artista_id` bigint UNSIGNED NOT NULL,
+  `cancion_id` bigint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- A extraer os datos da táboa `artista_cancion`
+--
+
+INSERT INTO `artista_cancion` (`artista_id`, `cancion_id`) VALUES
+(1, 1),
+(2, 2),
+(2, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da táboa `artista_produto`
 --
 
@@ -75,22 +95,23 @@ INSERT INTO `artista_produto` (`artista_id`, `produto_id`, `created_at`, `update
 CREATE TABLE `cancions` (
   `id` bigint UNSIGNED NOT NULL,
   `nome` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `artistas` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `duracion` time NOT NULL,
   `produto_id` bigint UNSIGNED NOT NULL,
   `numero_produto` int NOT NULL,
   `reproduccions` bigint NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `arquivo` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- A extraer os datos da táboa `cancions`
 --
 
-INSERT INTO `cancions` (`id`, `nome`, `artistas`, `duracion`, `produto_id`, `numero_produto`, `reproduccions`, `created_at`, `updated_at`) VALUES
-(1, 'Packt Like Sardines in a Crushd Tin Box', 'Radiohead', '04:00:00', 1, 1, 9, NULL, '2022-03-15 15:43:11'),
-(2, 'Army of me', 'Björk', '00:03:54', 2, 1, 19, NULL, '2022-03-15 17:25:24');
+INSERT INTO `cancions` (`id`, `nome`, `duracion`, `produto_id`, `numero_produto`, `reproduccions`, `created_at`, `updated_at`, `arquivo`) VALUES
+(1, 'Packt Like Sardines in a Crushd Tin Box', '04:00:00', 1, 1, 19, NULL, '2022-03-17 16:51:40', '3.mp3'),
+(2, 'Army of me', '00:03:54', 2, 1, 42, NULL, '2022-03-17 17:09:11', '3.mp3'),
+(3, 'Enjoy', '00:02:00', 2, 2, 9, NULL, '2022-03-17 17:09:07', '3.mp3');
 
 -- --------------------------------------------------------
 
@@ -443,16 +464,17 @@ CREATE TABLE `perfils` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
-  `foto` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `foto` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `direccion` tinytext COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- A extraer os datos da táboa `perfils`
 --
 
-INSERT INTO `perfils` (`id`, `login`, `rol`, `descripcion`, `created_at`, `updated_at`, `user_id`, `foto`) VALUES
-(1, 'daniel', 'admin', 'Son o primeiro usuario desta aplicación 🎊', NULL, NULL, 1, 'perfil1.webp'),
-(2, 'olaola', 'user', 'olisima', NULL, NULL, 2, 'perfil2.png');
+INSERT INTO `perfils` (`id`, `login`, `rol`, `descripcion`, `created_at`, `updated_at`, `user_id`, `foto`, `direccion`) VALUES
+(1, 'daniel', 'admin', 'Son o primeiro usuario desta aplicación 🎊', NULL, NULL, 1, 'perfil1.webp', 'Rúa Narón'),
+(2, 'olaola', 'user', 'olisima', NULL, NULL, 2, 'perfil2.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -605,6 +627,13 @@ INSERT INTO `xeneros` (`id`, `nome`, `descripcion`, `created_at`, `updated_at`) 
 --
 ALTER TABLE `artistas`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `artista_cancion`
+--
+ALTER TABLE `artista_cancion`
+  ADD PRIMARY KEY (`artista_id`,`cancion_id`),
+  ADD KEY `artista_cancion_ibfk_2` (`cancion_id`);
 
 --
 -- Indexes for table `artista_produto`
@@ -777,13 +806,13 @@ ALTER TABLE `xeneros`
 -- AUTO_INCREMENT for table `artistas`
 --
 ALTER TABLE `artistas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cancions`
 --
 ALTER TABLE `cancions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cestas`
@@ -866,6 +895,13 @@ ALTER TABLE `xeneros`
 --
 -- Restricións para os envorcados das táboas
 --
+
+--
+-- Restricións para a táboa `artista_cancion`
+--
+ALTER TABLE `artista_cancion`
+  ADD CONSTRAINT `artista_cancion_ibfk_1` FOREIGN KEY (`artista_id`) REFERENCES `artistas` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `artista_cancion_ibfk_2` FOREIGN KEY (`cancion_id`) REFERENCES `cancions` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Restricións para a táboa `artista_produto`
