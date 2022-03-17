@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Xerado en: 15 de Mar de 2022 ás 20:02
+-- Xerado en: 16 de Mar de 2022 ás 17:59
 -- Versión do servidor: 8.0.28-0ubuntu0.20.04.3
 -- Versión do PHP: 7.4.3
 
@@ -148,14 +148,14 @@ CREATE TABLE `cesta_produto` (
   `produto_id` bigint UNSIGNED NOT NULL,
   `cantidade` bigint UNSIGNED NOT NULL,
   `formato_id` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- A extraer os datos da táboa `cesta_produto`
 --
 
 INSERT INTO `cesta_produto` (`cesta_id`, `produto_id`, `cantidade`, `formato_id`) VALUES
-(1, 2, 1, 2);
+(1, 2, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -356,6 +356,78 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da táboa `pedidos`
+--
+
+CREATE TABLE `pedidos` (
+  `id` bigint UNSIGNED NOT NULL,
+  `data` date NOT NULL,
+  `perfil_id` bigint UNSIGNED NOT NULL,
+  `prezo` double NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- A extraer os datos da táboa `pedidos`
+--
+
+INSERT INTO `pedidos` (`id`, `data`, `perfil_id`, `prezo`, `created_at`, `updated_at`) VALUES
+(1, '2022-03-16', 2, 2, NULL, NULL),
+(2, '2022-03-16', 1, 12, '2022-03-16 15:11:38', '2022-03-16 15:11:38'),
+(3, '2022-03-16', 1, 12, '2022-03-16 15:13:54', '2022-03-16 15:13:54'),
+(4, '2022-03-16', 1, 43, '2022-03-16 15:38:41', '2022-03-16 15:38:42'),
+(5, '2022-03-16', 1, 43, '2022-03-16 15:40:00', '2022-03-16 15:40:00'),
+(6, '2022-03-16', 1, 43, '2022-03-16 15:40:43', '2022-03-16 15:40:44'),
+(7, '2022-03-16', 1, 43, '2022-03-16 15:41:09', '2022-03-16 15:41:09'),
+(8, '2022-03-16', 1, 20, '2022-03-16 15:46:02', '2022-03-16 15:46:02'),
+(9, '2022-03-16', 1, 24, '2022-03-16 15:47:33', '2022-03-16 15:47:33'),
+(10, '2022-03-16', 1, 36, '2022-03-16 15:48:19', '2022-03-16 15:48:19'),
+(11, '2022-03-16', 1, 24, '2022-03-16 15:53:42', '2022-03-16 15:53:42'),
+(12, '2022-03-16', 1, 24, '2022-03-16 15:54:03', '2022-03-16 15:54:03'),
+(13, '2022-03-16', 1, 0, '2022-03-16 15:54:25', '2022-03-16 15:54:25'),
+(14, '2022-03-16', 1, 0, '2022-03-16 15:54:29', '2022-03-16 15:54:29'),
+(15, '2022-03-16', 1, 24, '2022-03-16 15:55:48', '2022-03-16 15:55:48');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da táboa `pedido_produto`
+--
+
+CREATE TABLE `pedido_produto` (
+  `pedido_id` bigint UNSIGNED NOT NULL,
+  `produto_id` bigint UNSIGNED NOT NULL,
+  `cantidade` bigint UNSIGNED NOT NULL,
+  `formato_id` bigint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- A extraer os datos da táboa `pedido_produto`
+--
+
+INSERT INTO `pedido_produto` (`pedido_id`, `produto_id`, `cantidade`, `formato_id`) VALUES
+(2, 2, 1, 2),
+(3, 2, 1, 2),
+(4, 1, 3, 1),
+(4, 1, 1, 2),
+(5, 1, 3, 1),
+(5, 1, 1, 2),
+(6, 1, 3, 1),
+(6, 1, 1, 2),
+(7, 1, 3, 1),
+(7, 1, 1, 2),
+(8, 1, 2, 1),
+(9, 2, 2, 2),
+(10, 1, 1, 1),
+(10, 1, 2, 2),
+(11, 2, 2, 2),
+(12, 2, 2, 2),
+(15, 2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -630,6 +702,20 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `perfil_id` (`perfil_id`);
+
+--
+-- Indexes for table `pedido_produto`
+--
+ALTER TABLE `pedido_produto`
+  ADD PRIMARY KEY (`pedido_id`,`produto_id`,`formato_id`),
+  ADD KEY `formato_id` (`formato_id`,`produto_id`);
+
+--
 -- Indexes for table `perfils`
 --
 ALTER TABLE `perfils`
@@ -742,6 +828,12 @@ ALTER TABLE `notificacions`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `pedidos`
+--
+ALTER TABLE `pedidos`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT for table `perfils`
 --
 ALTER TABLE `perfils`
@@ -834,6 +926,19 @@ ALTER TABLE `listas`
 ALTER TABLE `notificacion_perfil`
   ADD CONSTRAINT `notificacion_perfil_notificacion_id_foreign` FOREIGN KEY (`notificacion_id`) REFERENCES `notificacions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `notificacion_perfil_perfil_id_foreign` FOREIGN KEY (`perfil_id`) REFERENCES `perfils` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Restricións para a táboa `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`perfil_id`) REFERENCES `perfils` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Restricións para a táboa `pedido_produto`
+--
+ALTER TABLE `pedido_produto`
+  ADD CONSTRAINT `pedido_produto_ibfk_1` FOREIGN KEY (`pedido_id`) REFERENCES `pedidos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_produto_ibfk_2` FOREIGN KEY (`formato_id`,`produto_id`) REFERENCES `formato_produto` (`formato_id`, `produto_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Restricións para a táboa `produto_xenero`
