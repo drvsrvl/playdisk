@@ -260,8 +260,10 @@ class ProdutoController extends Controller
      * @param  \App\Models\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produto $produto)
-    {
-        //
+    public function destroy($id)
+    {   
+       $produto = Produto::find($id);
+       $produto->delete();
+       return redirect()->action([ProdutoController::class, 'admin']); //rediriximos á vista detallada do nodo co id indicado
     }
 }

@@ -121,6 +121,7 @@ class PerfilController extends Controller
         $validated = $request->validate([ //validamos os campos
             'login' => 'required|string',
             'descripcion' => 'required|string',
+            'direccion' => 'string'
         ]);
         if($validated) { //no caso de ser válidos
             $perfil = Perfil::find($id); //buscamos o nodo con esa id
@@ -132,11 +133,13 @@ class PerfilController extends Controller
                 $nomefoto = "$nome.$extension"; //poñémoslle de nome o timestamp coa extensión
                 $foto->move(public_path('img/perfil'),$nomefoto); //e movémola á carpeta de imaxes da entrada
             }
-            DB::update('update perfils set login=?, foto=?, descripcion=? where id="' . $id . '"',
+            empty($request->direccion) ? $direccion=null : $direccion = $request->direccion;
+            DB::update('update perfils set login=?, foto=?, descripcion=?, direccion=? where id="' . $id . '"',
                 [
                     $request->login,
                     $nomefoto,
                     $request->descripcion,
+                    $direccion
                 ]);  //facemos a consulta preparada e pasámoslle os parámetros indicados
             return redirect()->action([PerfilController::class, 'show'], ['id' => $id]); //rediriximos á vista detallada do nodo co id indicado
         }

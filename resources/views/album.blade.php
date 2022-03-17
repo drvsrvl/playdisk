@@ -13,11 +13,14 @@
     </div>
     <div class="albumtexto">
             <h2 class="titulo">Tracklist</h2>
+                <input type="hidden" id="espazo" value=""><!-- comment -->
+                <input type="hidden" id="idCancion" value=""><!-- comment -->
+                <input type="hidden" id="idEspazo" value=""><!-- comment -->
             <input id="idcancion" type="hidden" value="">
             <div class="tracklist">
                 @foreach($produto->cancions as $cancion)
                 <div class="cancion" id="cancion{{$cancion->id}}" onmouseover="play({{$cancion->id}});" onmouseout="dontplay({{$cancion->id}});"
-                    @if(Auth::user()) onclick="reproducir({{$cancion->id}})" @else onclick="showError()" @endif>
+                    @if(Auth::user()) onclick="reproducir('album',{{$produto->id}},{{$cancion->id}})" @else onclick="showError()" @endif>
                     <input type="hidden" id="playing{{$cancion->id}}" value="false">
                     <span class="play">
                         <h2 id="numCancion{{$cancion->id}}" class="numCancion show">{{$cancion->numero_produto}}</h2>
@@ -26,7 +29,9 @@
                     </span>
                     <span class="medio">
                         <span class="titulocancion">{{$cancion->nome}}</span>
-                        <a href="/artista/{{$artista->id}}"><span class="autorcancion">{{$cancion->artistas}}</span></a>
+                        @foreach($cancion->artistas as $artista)
+                            <a href="/artista/{{$artista->id}}"><span class="autorcancion">{{$artista->nome}}</span></a>
+                        @endforeach
                     </span>
                     <div class="duracion">{{$cancion->duracion}}</div>
                     <div id="menutrack{{$cancion->id}}" class="menutrack" 

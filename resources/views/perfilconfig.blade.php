@@ -12,7 +12,7 @@
         <form action="/config/{{$perfil->id}}" method="post" enctype="multipart/form-data" style="width:100%;">
             @csrf
             <div style="display:flex;align-items:center;justify-content:center;width:100%;flex-direction:row">
-                <h5>Nome</h5>
+                <h5>Login</h5>
                 <input 
                     class="mx-4"
                     type="text" 
@@ -38,6 +38,16 @@
                     name="descripcion"
                 >{{$perfil->descripcion}}</textarea>
             </div>
+            <div class="my-5" style="display:flex;align-items:center;justify-content:center;width:100%;flex-direction:row">
+            <h5>Direccion</h5>
+                <input 
+                    class="mx-4"
+                    type="text" 
+                    style="background:none; border-radius:10px; border: 1px solid grey; color: white; outline: none; padding: 10px"
+                    value="{{$perfil->direccion}}"
+                    name="direccion"
+                >
+            </div>
             <div class="pb-4" style="display:flex;width:100%;justify-content:center">
                 <button 
                     type="submit"
@@ -47,7 +57,15 @@
             </div>
         </form>
     </div>
-    
+        @if(count($errors) > 0)
+            <div class="errors text-center py-2">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 </div>
 <a href="/perfil/eliminar/{{$perfil->id}}" class="text-center"><h5 class="divconfig rojo">Eliminar tu cuenta en PLAYDISK</h5></a>
 <br/>

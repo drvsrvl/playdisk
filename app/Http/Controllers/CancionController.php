@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cancion;
 use App\Models\Produto;
+use App\Models\Artista;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,7 @@ class CancionController extends Controller
             'produtoid' => 'required',
             'posicion' => 'required',
             'arquivo' => 'required',
+            'artistas' => 'required'
         ]);
         if($validated) { //no caso de ser válidos
             $id = Cancion::latest('id')->first()->id;
@@ -54,7 +56,7 @@ class CancionController extends Controller
                 $nomecancion = "$nome.$extension"; //poñémoslle de nome o timestamp coa extensión
                 $arquivo->move(public_path('cancions'),$nomecancion); //e movémola á carpeta de imaxes da entrada
             } else $nomecancion = 'default.mp3';
-            DB::insert('insert into cancions (nome, produto_id, arquivo, numero_produto, reproduccions, duracion, artistas) values (?, ?, ?, ?, ?, ?, ?)',
+            DB::insert('insert into cancions (nome, produto_id, arquivo, numero_produto, reproduccions, duracion) values (?, ?, ?, ?, ?, ?, ?)',
                 [
                     $request->nome,
                     $request->produtoid,
@@ -62,8 +64,15 @@ class CancionController extends Controller
                     $request->posicion,
                     '0',
                     $request->duracion,
-                    'Björk'
                 ]);  //facemos a consulta preparada e pasámoslle os parámetros indicados
+            foreach($request->artista as $artista) {
+                DB::insert('insert into artista_cancion (artista_id, cancion_id) values (?, ?)',
+                [
+                    intval($artista),
+                    $lastID
+                ]);
+            }
+            
             return redirect()->action([ProdutoController::class, 'admin']); //rediriximos á vista detallada do nodo co id indicado
         }
         else {
@@ -79,6 +88,29 @@ class CancionController extends Controller
             return view('reproductor', ['cancion' => $cancion]);
         }
     }
+    
+    public function reproducirSeguinte(Request $request) {
+        if($request->ajax()) {
+            if($request->espazo == 'album') {
+                $produto = Produto::find($request->idEspazo);
+                foreach($produto->cancions as $cancionProd) {
+                    if($cancionProd->id == $request->idCancion) {
+                        $posicionAlbum = $cancionProd->pivot->posicion;
+                    }
+                }
+                foreach($produto->cancions as $cancionProd) {
+                    if($cancionProd->pivot->posicion == ($posicionAlbum + 1)) {
+                        $cancion = Cancion::find($cancionProd->id);
+                        $cancion->reproduccions = intval($cancion->reproduccions) + 1;
+                        $cancion->save();
+                    }
+                }
+                return view('reproductor', ['cancion' => $cancion]);
+            }
+        }
+    }
+
+    
     /**
      * Display the specified resource.
      *

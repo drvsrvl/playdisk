@@ -45,12 +45,16 @@
             <h5>Total IVE: {{$prezoTotal* 0.21}}€</h5>
             <h5>Prezo total: {{$prezoTotal += $prezoTotal* 0.21}}€</h5>
         </div>
-      <form action="/pedido" method="post">
-          @csrf
-        <div class="text-center my-3">
-            <button type="submit" class="login" style="border:1px solid grey; font-size:16px">Efectuar pedido</button>
-        </div>
-      </form>
+            @if(Auth::user()->perfil->direccion != null)
+                <form action="/pedido" method="post">
+                    @csrf
+                  <div class="text-center my-3">
+                      <button type="submit" class="login" style="border:1px solid grey; font-size:16px">Efectuar pedido</button>
+                  </div>
+                </form>
+            @else 
+                <a class="blanco text-center py-3"  href="/config/{{Auth::user()->perfil->id}}"><p>Introduce a túa dirección para efectuar o pedido</p></a>
+            @endif
         @else 
         <h5 class="text-center">Non hai produtos que mostrar, diríxete ao noso <a href="/catalogo" class="blanco">catálogo</a> para explorar os distintos álbumes.</h5>
     @endif

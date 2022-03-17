@@ -69,6 +69,8 @@
      
      <p>Perfil: {{Auth::user()->perfil->login}}</p><!-- comment -->
      <p>Data: <?php echo date('d-m-Y') ?></p>
+     <p>Facura nº {{$cesta->id}}</p>
+     <p>Dirección: {{Auth::user()->perfil->direccion}}</p>
 
         <table class="taboacesta">
             <tr class="cabeceira">

@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Models\Produto;
 use App\Models\Lista;
+use App\Models\Artista;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +16,10 @@ class Cancion extends Model
     
     public function listas() {
         return $this->belongsToMany(Lista::class);
+    }
+    
+     public function artistas() {
+        return $this->belongsToMany(Artista::class);
     }
     
 }

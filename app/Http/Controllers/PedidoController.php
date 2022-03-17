@@ -51,4 +51,17 @@ class PedidoController extends Controller
         return $pdf->download('facturapedido' . $lastIDpedido . '.pdf');
                //redirect()->action([CestaController::class, 'index']);
     }
+    
+    public function show() {
+        $pedidos = Auth::user()->perfil->pedidos;
+        return view('pedidos', ['pedidos' => $pedidos]);
+    }
+    
+    public function factura($id) {
+        $pedido = Pedido::find($id);
+        if($pedido->perfil_id == Auth::user()->perfil->id) {
+            $pdf = PDF::loadview('facturapdf', ['cesta' => $pedido]);
+            return $pdf->download('facturapedido' . $id . '.pdf');
+        } else return abort(404);
+    }
 }

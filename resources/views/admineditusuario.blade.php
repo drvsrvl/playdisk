@@ -54,9 +54,17 @@
             </div>
         </form>
     </div>
-    
+        @if(count($errors) > 0)
+            <div class="errors text-center py-2">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 </div>
-<a href="/perfil/eliminar/{{$perfil->id}}" class="text-center"><h5 class="divconfig rojo">Eliminar a {{$perfil->login}} de PLAYDISK</h5></a>
+<a href="/admin/perfil/eliminar/{{$perfil->id}}" class="text-center"><h5 class="divconfig rojo">Eliminar a {{$perfil->login}} de PLAYDISK</h5></a>
 <br/>
 
 @stop
