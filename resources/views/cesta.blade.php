@@ -7,7 +7,7 @@
     <div class="infolista" style="justify-content:center; height:80px">
             <h3>Cesta</h3>
         </div>
-    <hr/>
+
 
     <div class="cancionslista px-4" id="taboacesta">
       @if(!empty($cesta->produtos))
