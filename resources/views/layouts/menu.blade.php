@@ -55,6 +55,7 @@
                 </div>
                 <div class="dropdownmenu">
                     <a href="/perfil/{{Auth::user()->perfil->id}}">Perfil</a>
+                    <a href="/pedidos">Pedidos</a>
                     <a href="/config/{{Auth::user()->perfil->id}}">Configuración</a>
                     @if(Auth::user()->perfil->rol == "admin")
                     <a href="/admin">Administrador</a>

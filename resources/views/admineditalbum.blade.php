@@ -60,7 +60,7 @@
             </div>
             <div class="my-5" style="display:flex;align-items:center;justify-content:center;width:100%;flex-direction:row;align-items:center"><!-- comment -->
                 @foreach($xeneros as $xenero)
-                    <input type="checkbox" name="xeneros[]" value="{{$xenero->id}}" 
+                    <input class="mx-2" type="checkbox" name="xeneros[]" value="{{$xenero->id}}" 
                            @foreach($produto->xeneros as $xeneroProd) 
                                 @if($xeneroProd->id == $xenero->id) checked @endif
                            @endforeach
@@ -106,7 +106,12 @@
                     <input type="time" name="duracion"
                         style="background:none;border: 1px solid grey; color: white; outline: none;">
             </div>
-            
+            <div class="my-5" style="display:flex;align-items:center;justify-content:center;width:100%;flex-direction:row;align-items:center">
+            @foreach($artistas as $artista)
+                <input class="mx-2" type="checkbox" name="artistas[]" value="{{$artista->id}}" 
+                       >{{$artista->nome}}
+            @endforeach
+            </div>
             <div class="pb-4" style="display:flex;width:100%;justify-content:center;">
                 <button 
                     type="submit"
@@ -116,8 +121,18 @@
             </div>
         </form>
     </div>
+        @if(count($errors) > 0)
+            <div class="errors text-center py-2">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
 </div>
-<a href="/produto/eliminar/{{$produto->id}}" class="text-center"><h5 class="divconfig rojo">Eliminar {{$produto->nome}} de PLAYDISK</h5></a>
+<a href="/album/eliminar/{{$produto->id}}" class="text-center"><h5 class="divconfig rojo">Eliminar {{$produto->nome}} de PLAYDISK</h5></a>
 <br/>
 
 @stop

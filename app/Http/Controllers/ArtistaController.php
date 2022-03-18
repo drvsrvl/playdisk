@@ -132,8 +132,10 @@ class ArtistaController extends Controller
      * @param  \App\Models\Artista  $artista
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Artista $artista)
+    public function destroy($id)
     {
-        //
+        $artista = Artista::find($id);
+        $artista->delete();
+        return redirect()->action([ArtistaController::class, 'admin']); //rediriximos á vista detallada do nodo co id indicado
     }
 }

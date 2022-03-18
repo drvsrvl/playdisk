@@ -8,6 +8,7 @@
             border: 1.5px solid black;">
             <img class="perfilfoto" src="/img/perfil/{{$perfil->foto}}"></img>
         </div>
+        
         <h3 class="perfilnome mx-3">&#64{{$perfil->login}}</h3>
     </div>
     <div class="informacionperfil">

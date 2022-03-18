@@ -9,6 +9,7 @@ use App\Http\Controllers\XeneroController;
 use App\Http\Controllers\CancionController;
 use App\Http\Controllers\CestaController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\PedidoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,8 @@ Route::get('/album/{id}', [ProdutoController::class, 'show']);
 Route::post('/album/{id}', [ComentarioController::class, 'store']);
 
 Route::get('/reproducir', [CancionController::class, 'reproducir']);
+
+Route::get('/reproducirSeguinte', [CancionController::class, 'reproducirSeguinte']);
 
 Route::get('/comentario/eliminar/{id}', [ComentarioController::class, 'destroy']);
 
@@ -61,6 +64,8 @@ Route::get('/admin/artista', [ArtistaController::class, 'create'])->middleware('
 
 Route::post('/admin/artista', [ArtistaController::class, 'store'])->middleware('admin');
 
+Route::get('/artista/eliminar/{id}', [ArtistaController::class, 'destroy'])->middleware('admin');
+
 //Rutas de edición de álbum por parte do administrador
 
 Route::get('/admin/albumes', [ProdutoController::class, 'admin'])->middleware('admin');
@@ -72,6 +77,8 @@ Route::post('/admin/album/{id}', [ProdutoController::class, 'update'])->middlewa
 Route::get('/admin/album', [ProdutoController::class, 'create'])->middleware('admin'); //novo artista
 
 Route::post('/admin/album', [ProdutoController::class, 'store'])->middleware('admin');
+
+Route::get('/album/eliminar/{id}', [ProdutoController::class, 'destroy'])->middleware('admin');
 
 
 //Rutas de edición de canción
@@ -85,6 +92,8 @@ Route::get('/admin/perfils', [PerfilController::class, 'index'])->middleware('ad
 Route::get('/admin/perfil/{id}', [PerfilController::class, 'adminedit'])->middleware('admin');
 
 Route::post('/admin/perfil/{id}', [PerfilController::class, 'adminupdate'])->middleware('admin');
+
+Route::get('/admin/perfil/eliminar/{id}', [PerfilController::class, 'destroy'])->middleware('admin');
 
 Route::get('/admin/xenero', [XeneroController::class, 'admin'])->middleware('admin');
 
@@ -111,6 +120,12 @@ Route::get('/artista', function () {
 });
 
 Route::get('/cesta', [CestaController::class, 'index'])->middleware('auth');
+
+Route::get('/pedidos', [PedidoController::class, 'show'])->middleware('auth');
+
+Route::get('/factura/{id}', [PedidoController::class, 'factura'])->middleware('auth');
+
+Route::post('/pedido', [PedidoController::class, 'store'])->middleware('auth');
 
 Route::post('/cesta/engadir', [CestaController::class, 'store'])->middleware('auth');
 

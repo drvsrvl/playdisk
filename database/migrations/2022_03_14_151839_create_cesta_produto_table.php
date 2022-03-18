@@ -16,9 +16,15 @@ class CreateCestaProdutoTable extends Migration
         Schema::create('cesta_produto', function (Blueprint $table) {
             $table->bigInteger('produto_id')->unsigned();
             $table->bigInteger('cesta_id')->unsigned();
+            $table->bigInteger('formato_id')->unsigned();
             $table->foreign('produto_id')
-                ->references('id')
-                ->on('produtos')
+                ->references('produto_id')
+                ->on('formato_produto')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('formato_id')
+                ->references('formato_id')
+                ->on('formato_produto')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->foreign('cesta')
@@ -27,7 +33,7 @@ class CreateCestaProdutoTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->bigInteger('cantidade');
-            $table->primary(['cesta_id', 'produto_id']);
+            $table->primary(['cesta_id', 'produto_id', 'formato_id']);
             $table->timestamps();
         });
     }
