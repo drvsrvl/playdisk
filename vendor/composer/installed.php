@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'fdc038d2f057d5d96d2a7107a102a4192db5bb58',
+        'reference' => '68a54be7f39bc822ba408ccdedcd04a739dd0886',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -86,12 +86,12 @@
             'dev_requirement' => false,
         ),
         'dompdf/dompdf' => array(
-            'pretty_version' => 'v1.2.0',
-            'version' => '1.2.0.0',
+            'pretty_version' => 'v1.2.1',
+            'version' => '1.2.1.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../dompdf/dompdf',
             'aliases' => array(),
-            'reference' => '60b704331479a69e9bcdb3496da2315b5c4f94fd',
+            'reference' => 'c6dfd9bb8b0040609f04754f729d4cb3016e0575',
             'dev_requirement' => false,
         ),
         'dragonmantank/cron-expression' => array(
@@ -427,7 +427,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'fdc038d2f057d5d96d2a7107a102a4192db5bb58',
+            'reference' => '68a54be7f39bc822ba408ccdedcd04a739dd0886',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(

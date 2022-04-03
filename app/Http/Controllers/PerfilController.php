@@ -44,7 +44,7 @@ class PerfilController extends Controller
                 $foto = $request->file('foto');
                 $nome = "perfil" . $id;
                 $extension = $foto->guessExtension();
-                $nomefoto = "$nome.$extension"; //poñémoslle de nome o timestamp coa extensión
+                $nomefoto = "$nome.$extension";
                 $foto->move(public_path('img/perfil'),$nomefoto); //e movémola á carpeta de imaxes da entrada
             }
             DB::update('update perfils set login=?, foto=?, descripcion=?, rol=? where id="' . $id . '"',
@@ -103,9 +103,9 @@ class PerfilController extends Controller
      */
     public function edit($id)
     {
-        if(Auth::user()->perfil->id == $id) {
+        if(Auth::user()->perfil->id == $id) {//se o usuario é o que está en sesión
             $perfil = Perfil::find($id);
-            return view('perfilconfig', ['perfil' => $perfil]);
+            return view('perfilconfig', ['perfil' => $perfil]); //devolvémoslle a vista de edición
         } else return abort(403, 'Acción non autorizada');
     }
 

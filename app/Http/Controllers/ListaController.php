@@ -78,7 +78,7 @@ class ListaController extends Controller
                     Auth::user()->perfil->id
                 ]);  //facemos a consulta preparada e pasámoslle os parámetros indicados
             $lastID++;
-            return redirect()->action([ListaController::class, 'show'], ['id' => $lastID]); //rediriximos á vista detallada do nodo co id indicado
+            return redirect()->action([ListaController::class, 'show'], ['id' => $lastID]); //rediriximos á vista detallada do lista co id indicado
         }
     }
 
@@ -103,9 +103,9 @@ class ListaController extends Controller
     public function edit($id)
     {
         $lista = Lista::find($id);
-        if($lista->perfil->id == Auth::user()->perfil->id) {
-            return view('listaconfig', ['lista' => $lista]);
-        } else return abort(403, 'Acción non autorizada');
+        if($lista->perfil->id == Auth::user()->perfil->id) { //se esta lista pertence ao usuario en sesión
+            return view('listaconfig', ['lista' => $lista]); //pode configurala
+        } else return abort(403, 'Acción non autorizada'); //senón, mandamos mensaxe de erro
     }
 
     /**
@@ -129,7 +129,7 @@ class ListaController extends Controller
                 $nome = "lista" . $id;
                 $extension = $foto->guessExtension();
                 $nomefoto = "$nome.$extension"; //poñémoslle de nome o timestamp coa extensión
-                $foto->move(public_path('img/lista'),$nomefoto); //e movémola á carpeta de imaxes da entrada
+                $foto->move(public_path('img/lista'),$nomefoto); //e movémola á carpeta de imaxes da lista
             } 
             DB::update('update listas set titulo=?, foto=?, descripcion=? where id="' . $id . '"',
                 [
@@ -137,7 +137,7 @@ class ListaController extends Controller
                     $nomefoto,
                     $request->descripcion,
                 ]);  //facemos a consulta preparada e pasámoslle os parámetros indicados
-            return redirect()->action([ListaController::class, 'show'], ['id' => $id]); //rediriximos á vista detallada do nodo co id indicado
+            return redirect()->action([ListaController::class, 'show'], ['id' => $id]); //rediriximos á vista detallada da lista co id indicado
         }
         else {
 
@@ -155,7 +155,7 @@ class ListaController extends Controller
     {
         $lista = Lista::find($id);
         if($lista->perfil->id == Auth::user()->perfil->id) {
-            $lista->delete(); //eliminamos o nodo atopado a través da id
+            $lista->delete(); //eliminamos a lista atopada a través da id
             return redirect()->action([PerfilController::class, 'show'], ['id' => Auth::user()->perfil->id]);
         }
         else return abort(403, 'Acción non autorizada');

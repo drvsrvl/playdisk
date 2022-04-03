@@ -42,14 +42,11 @@ class PedidoController extends Controller
         $pedido->prezo = $prezoTotal;
         $pedido->save();
         
-        $pdf = PDF::loadview('facturapdf', ['cesta' => Auth::user()->perfil->cesta]);
-        
         foreach($cesta->produtos as $produto) {
             $cesta->produtos()->detach($produto->id);
         }
         
-        return $pdf->download('facturapedido' . $lastIDpedido . '.pdf');
-               //redirect()->action([CestaController::class, 'index']);
+        return redirect()->action([CestaController::class, 'index']);
     }
     
     public function show() {

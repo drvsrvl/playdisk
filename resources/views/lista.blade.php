@@ -18,7 +18,7 @@
                                     echo $numCancions . ' cancións';
                                 } else echo $numCancions . ' canción';
                             ?>
-                </span> ・ <span class="duracionlista"> X minutos</span>
+                </span>
             </div>
             <div class="descripcionlista mt-1" style="color:lightgrey">
                 {{$lista->descripcion}}

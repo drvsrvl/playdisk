@@ -54,7 +54,7 @@ INSERT INTO `artistas` (`id`, `nome`, `descripcion`, `foto`, `created_at`, `upda
 CREATE TABLE `artista_cancion` (
   `artista_id` bigint UNSIGNED NOT NULL,
   `cancion_id` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A extraer os datos da táboa `artista_cancion`
@@ -169,7 +169,7 @@ CREATE TABLE `cesta_produto` (
   `produto_id` bigint UNSIGNED NOT NULL,
   `cantidade` bigint UNSIGNED NOT NULL,
   `formato_id` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A extraer os datos da táboa `cesta_produto`
@@ -391,7 +391,7 @@ CREATE TABLE `pedidos` (
   `prezo` double NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A extraer os datos da táboa `pedidos`
@@ -425,7 +425,7 @@ CREATE TABLE `pedido_produto` (
   `produto_id` bigint UNSIGNED NOT NULL,
   `cantidade` bigint UNSIGNED NOT NULL,
   `formato_id` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- A extraer os datos da táboa `pedido_produto`

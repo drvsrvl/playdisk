@@ -53,8 +53,8 @@ class CancionController extends Controller
                 $arquivo = $request->file('arquivo');
                 $nome = "cancion" . $id;
                 $extension = $arquivo->guessExtension();
-                $nomecancion = "$nome.$extension"; //poñémoslle de nome o timestamp coa extensión
-                $arquivo->move(public_path('cancions'),$nomecancion); //e movémola á carpeta de imaxes da entrada
+                $nomecancion = "$nome.$extension"; 
+                $arquivo->move(public_path('cancions'),$nomecancion); // movémola á carpeta de cancións
             } else $nomecancion = 'default.mp3';
             DB::insert('insert into cancions (nome, produto_id, arquivo, numero_produto, reproduccions, duracion) values (?, ?, ?, ?, ?, ?, ?)',
                 [
@@ -70,10 +70,10 @@ class CancionController extends Controller
                 [
                     intval($artista),
                     $lastID
-                ]);
+                ]); //facemos a inserción de datos da táboa pivote entre artista e canción
             }
             
-            return redirect()->action([ProdutoController::class, 'admin']); //rediriximos á vista detallada do nodo co id indicado
+            return redirect()->action([ProdutoController::class, 'admin']); //rediriximos á vista detallada do admin
         }
         else {
 
@@ -82,14 +82,14 @@ class CancionController extends Controller
 
     public function reproducir(Request $request) {
         if($request->ajax()) {
-            $cancion = Cancion::find($request->id);
+            $cancion = Cancion::find($request->id); //buscamos o id e sumamos un valor á súa reproducción
             $cancion->reproduccions = intval($cancion->reproduccions) + 1;
             $cancion->save();
-            return view('reproductor', ['cancion' => $cancion]);
+            return view('reproductor', ['cancion' => $cancion]); //devolvemos a vista do reproductor coa canción seleccionada
         }
     }
     
-    public function reproducirSeguinte(Request $request) {
+    /*public function reproducirSeguinte(Request $request) {
         if($request->ajax()) {
             if($request->espazo == 'album') {
                 $produto = Produto::find($request->idEspazo);
@@ -108,7 +108,7 @@ class CancionController extends Controller
                 return view('reproductor', ['cancion' => $cancion]);
             }
         }
-    }
+    }*/
 
     
     /**

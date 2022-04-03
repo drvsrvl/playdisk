@@ -39,18 +39,18 @@ class CestaController extends Controller
     public function store(Request $request)
     {
         $cesta = Auth::user()->perfil->cesta;
-        foreach($cesta->produtos as $produto) {
-            foreach($produto->formatos as $formato) {
+        foreach($cesta->produtos as $produto) { //por cada produto
+            foreach($produto->formatos as $formato) { //e por cada formato do produto
                 $produto_id = $produto->id;
-                if($formato->id == $produto->pivot->formato_id) {
-                    $formato_id = $formato->id;
+                if($formato->id == $produto->pivot->formato_id) { //se coincide este formato co que se atopa na táboa pivote entre este produto e a cesta
+                    $formato_id = $formato->id; //almacenamos os valores
                     $cantidade = intval($produto->pivot->cantidade);
                         if($formato->id == $request->formato_id && $produto_id == $request->produto_id) {
                           DB::update('update cesta_produto set cantidade=? where (cesta_id="' . $cesta->id . '") and (formato_id="' . $formato_id . '") and (produto_id="' . $produto_id . '")',
                             [
                                 $cantidade+1
-                            ]);
-                          return view('taboacesta', ['cesta' => Auth::user()->perfil->cesta]);
+                            ]); //e sumamos unha cantidade na táboa pivote entre a cesta e o produto
+                          return view('taboacesta', ['cesta' => Auth::user()->perfil->cesta]); //e devolvemos a vista para que a recolla a través de AJAX
                         }
                 }
                     
@@ -62,34 +62,34 @@ class CestaController extends Controller
                     $request->produto_id,
                     1,
                     $request->formato_id
-                ]);  //facemos a ccomentarioonsulta preparada e pasámoslle os parámetros indicado
+                ]);  //facemos a consulta preparada e pasámoslle os parámetros indicado
             return true;
     }
     
     public function quitar(Request $request)
     {
         $cesta = Auth::user()->perfil->cesta;
-        foreach($cesta->produtos as $produto) {
-            foreach($produto->formatos as $formato) {
+        foreach($cesta->produtos as $produto) {//por cada produto
+            foreach($produto->formatos as $formato) { //e formato do produto
                 $produto_id = $produto->id;
-                if($formato->id == $produto->pivot->formato_id) {
+                if($formato->id == $produto->pivot->formato_id) { //se coinciden
                     $formato_id = $formato->id;
                     $cantidade = intval($produto->pivot->cantidade);
-                    if($formato->id == $request->formato_id && $produto_id == $request->produto_id) {
+                    if($formato->id == $request->formato_id && $produto_id == $request->produto_id) { //e se é a que queremos borrar
                         if($cantidade - 1 != 0) {
                           DB::update('update cesta_produto set cantidade=? where (cesta_id="' . $cesta->id . '") and (formato_id="' . $formato_id . '") and (produto_id="' . $produto_id . '")',
                             [
                                 $cantidade-1
-                            ]);
-                        } else {
+                            ]); //quitamos un valor na bbdd
+                        } else { 
                             DB::delete('delete from cesta_produto where (cesta_id="' . $cesta->id . '") and (formato_id="' . $formato_id . '") and (produto_id="' . $produto_id . '")');
-                        }
+                        } //se é menor de un, borrámolo
                     }
                 }
                     
             }
         }
-        return view('taboacesta', ['cesta' => Auth::user()->perfil->cesta]);
+        return view('taboacesta', ['cesta' => Auth::user()->perfil->cesta]); //devolvemos a vista para que a recolao AJAX
     }
 
     /**

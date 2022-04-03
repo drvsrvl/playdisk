@@ -22,6 +22,7 @@
     <div class="divcorpocatalogo">
         <div id="albumescatalogo" class="albumescatalogo py-4" 
             style="display:flex; align-items:center">
+            <?php $contador = 0; ?>
             @foreach($produtos as $produto)
                 <div class="fichaalbum mx-3" style="height:200px" onclick="link('album',{{$produto->id}})">
                     <img class="fichaalbum py-2" width="100%" src="/img/caratula/{{$produto->caratula}}"></img>
@@ -37,7 +38,7 @@
                 <i class="bi bi-tags"></i> XÉNEROS
                 </div>
                 @foreach($xeneros as $xenero)
-                    <a href="/catalogo/{{$xenero->id}}"><button class="xenero blanco"><?php echo strtoupper($xenero->nome); ?></button></a>
+                    <a  href="/catalogo/{{$xenero->id}}"><button class="xenero blanco my-1"><?php echo strtoupper($xenero->nome); ?></button></a>
                 @endforeach
         </div>
     </div>

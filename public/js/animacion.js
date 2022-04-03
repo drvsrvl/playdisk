@@ -98,7 +98,7 @@ function outeliminarcomentario(id) {
   document.getElementById('eliminarcomentario'+id).classList.toggle('notshow');
 }
 
-function reproducir(espazo,idEspazo,id) {
+function reproducir(id) {
   var playing = document.getElementById('playing' + id);
   if (playing.value == 'false') {
     var data={"id":id};
@@ -112,9 +112,6 @@ function reproducir(espazo,idEspazo,id) {
             playing.value = 'play';
             document.getElementById("pepaxina").style.paddingBottom = "70px";
             document.getElementById("pepaxina").style.height = "120px";
-            $("#espazo").val(espazo);
-            $("#idEspazo").val(idEspazo);
-            $("#idCancion").val(id);
         }
     });
   } else if (playing.value == 'play') {
@@ -137,11 +134,6 @@ function closereproductor(id){
 }
 
 
-
-$('#reproduccion2').on('ended', function() {
-  alert('hola')
-   // enable button/link
-});
 
 /*audio.on("ended", () => {
     alert('hola')

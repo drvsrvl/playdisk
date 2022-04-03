@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('title', 'index')
 @section('contido')
-<div class="indexportada">
-    <div class="indexesquerda"><br>
+<div class="indexportada" style="position:relative;">
+    <div class="indexesquerda" style="margin-top:-20px;"><br>
         <div class="tituloindexesquerda">
             PLAYDISK é o lugar onde podes  
             <span
@@ -16,13 +16,15 @@
         </span><br><br>
         <a href="/register"><button class="botonindexesquerda">Comezar</button></a>
     </div>
-    <div class="svgdereita">
-        <div class="img"></div>
+    <div class="svgdereita" style="width:43%;position:absolute;right:0">
+
+            <img src="/img/svg/compose.svg" height="100%" ></img>
+        
     </div>
 </div>
 <div class="indextrending">
     <div class="tituloindextrending"> 
-    <i class="bi bi-arrow-up-right-circle"></i> TRENDING
+    <i class="bi bi-arrow-up-right-circle"></i> POPULARES
     </div>
     <?php $cont = 1; ?>
     <div
@@ -61,7 +63,7 @@
     </div>
 </div>
 
-<div class="novidades" style="height:300px;">
+<!--<div class="novidades" style="height:300px;">
     <div class="tituloindexnovidades my-3"> 
         <i class="bi bi-plus-circle"></i> NOVIDADES
     </div>
@@ -76,7 +78,7 @@
         </div>
        
     @endfor
-</div>
+</div>-->
 
 <script>
         $(document).ready(function() {

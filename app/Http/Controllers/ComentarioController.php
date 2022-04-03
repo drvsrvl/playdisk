@@ -49,10 +49,10 @@ class ComentarioController extends Controller
                     Auth::user()->perfil->id,
                     $id,
                     date("Y-m-d")
-                ]);  //facemos a ccomentarioonsulta preparada e pasámoslle os parámetros indicados
+                ]);  //facemos a consulta preparada e pasámoslle os parámetros indicados
             $lastID = Comentario::latest('id')->first()->id;
-            $comentario = Comentario::find($lastID);
-            return view('novocomentario', ['comentario' => $comentario]);
+            $comentario = Comentario::find($lastID); //buscamos o último comentario insertado
+            return view('novocomentario', ['comentario' => $comentario]); //e devolvemos a vista
 
         }
     }

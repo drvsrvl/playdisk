@@ -14,6 +14,7 @@
         <title>PLAYDISK | @yield('title')</title>
     </head>
     <body>
+        @php $locale = session()->get('locale'); @endphp
         @include('layouts.menu')
         @include('layouts.corpo')
         @include('layouts.pe')

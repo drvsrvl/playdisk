@@ -78,6 +78,8 @@ class ProdutoController extends Controller
             'xeneros' => 'required'
         ]);
         if($validated) { //no caso de ser válidos
+            $lastID = Produto::latest('id')->first()->id; //Buscamos o último id de lista (a que acabamos de crear) para ensinalo
+            $id = $lastID+1;
             if($request->hasfile('caratula')){
                 $foto = $request->file('caratula');
                 $nome = "produto" . $id;
@@ -93,11 +95,11 @@ class ProdutoController extends Controller
                     $request->dataLanzamento,
                     date("Y-m-d")
                 ]);  //facemos a consulta preparada e pasámoslle os parámetros indicados
-                $lastID = Produto::latest('id')->first()->id; //Buscamos o último id de lista (a que acabamos de crear) para ensinalo
+            $produto = Produto::find($id);
                 DB::insert('insert into artista_produto (artista_id, produto_id) values (?, ?)',
                     [
                         intval($request->artista),
-                        $lastID
+                        $id
                     ]);
             foreach($request->xeneros as $xenero) {
                 $produto->xeneros()->attach($xenero);
@@ -145,7 +147,7 @@ class ProdutoController extends Controller
         foreach ($reproduccions as $produtoid => $contador) {
             $trending[$cont] = Produto::find($produtoid);
             $cont++;
-            if($cont == 6) {
+            if($cont == 4) {
                 break;
             }
         }
@@ -211,18 +213,18 @@ class ProdutoController extends Controller
                 $nomefoto = "$nome.$extension"; //poñémoslle de nome o timestamp coa extensión
                 $foto->move(public_path('img/caratula'),$nomefoto); //e movémola á carpeta de imaxes da entrada
             }
-            foreach($request->xeneros as $xenero) {
+            foreach($request->xeneros as $xenero) {  
                 $atopado = false;
-                foreach($produto->xeneros as $xeneroProd) {
-                    if($xenero == $xeneroProd->id) {
-                        $atopado = true;
+                foreach($produto->xeneros as $xeneroProd) {//por cada xenero do produto
+                    if($xenero == $xeneroProd->id) { //se coincide cos seleccionados polo usuario
+                        $atopado = true; //asignamos true
                     }
                 }
-                !$atopado ? $produto->xeneros()->attach($xenero) : "";
+                !$atopado ? $produto->xeneros()->attach($xenero) : ""; //se non está atopado, asignámolo
             }
             foreach($produto->xeneros as $xeneroProd) {
-                if(!in_array($xeneroProd->id, $request->xeneros)) {
-                    $produto->xeneros()->detach($xeneroProd->id);
+                if(!in_array($xeneroProd->id, $request->xeneros)) { //se non se atopa o id do xénero preasignado aos dos asignados agora polo usuario
+                    $produto->xeneros()->detach($xeneroProd->id); //quitámolo da lista
                 }
             }
             
@@ -240,12 +242,12 @@ class ProdutoController extends Controller
                     $repetido=true;
                 }
             }
-            if(!$repetido) {
+            if(!$repetido) { //se non se repite o artista asignado
                 DB::insert('insert into artista_produto (artista_id, produto_id) values (?, ?)',
                     [
                         intval($request->artista),
                         $id
-                    ]);
+                    ]); //facemos a inserción de datos na táboa pivote
             }
             return redirect()->action([ProdutoController::class, 'admin']); //rediriximos á vista detallada do nodo co id indicado
         }
@@ -263,7 +265,7 @@ class ProdutoController extends Controller
     public function destroy($id)
     {   
        $produto = Produto::find($id);
-       $produto->delete();
+       $produto->delete(); //borrado do produto
        return redirect()->action([ProdutoController::class, 'admin']); //rediriximos á vista detallada do nodo co id indicado
     }
 }

@@ -7,20 +7,15 @@
     <div class="infolista" style="justify-content:center; height:80px">
             <h3>Cesta</h3>
         </div>
-<<<<<<< HEAD
 
-
-=======
-    <hr/>
     <?php
-    $contadorCesta = 0;
+        $contador = 0;
         foreach($cesta->produtos as $produto) {
-            $contadorCesta++;
+            $contador++;
         }
     ?>
->>>>>>> 64d26dcbf467aa70bd19d40437de81a753ef00dd
     <div class="cancionslista px-4" id="taboacesta">
-      @if($contadorCesta!=0)
+    @if($contador!=0))
         <table class="taboacesta">
             <tr class="cabeceira">
                 <td>PRODUTO</td><!-- comment -->
@@ -50,16 +45,12 @@
             <h5>Total IVE: {{$prezoTotal* 0.21}}€</h5>
             <h5>Prezo total: {{$prezoTotal += $prezoTotal* 0.21}}€</h5>
         </div>
-            @if(Auth::user()->perfil->direccion != null)
-                <form action="/pedido" method="post">
-                    @csrf
-                  <div class="text-center my-3">
-                      <button type="submit" class="login" style="border:1px solid grey; font-size:16px">Efectuar pedido</button>
-                  </div>
-                </form>
-            @else 
-                <a class="blanco text-center py-3"  href="/config/{{Auth::user()->perfil->id}}"><p>Introduce a túa dirección para efectuar o pedido</p></a>
-            @endif
+      <form action="/pedido" method="post">
+          @csrf
+        <div class="text-center my-3">
+            <button type="submit" class="login" style="border:1px solid grey; font-size:16px">Efectuar pedido</button>
+        </div>
+      </form>
         @else 
         <h5 class="text-center">Non hai produtos que mostrar, diríxete ao noso <a href="/catalogo" class="blanco">catálogo</a> para explorar os distintos álbumes.</h5>
     @endif

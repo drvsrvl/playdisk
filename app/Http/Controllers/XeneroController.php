@@ -54,7 +54,7 @@ class XeneroController extends Controller
                     $produtosXenero[] = $produto;
                 }
             }
-        };
+        }; //devolve a vista do catálogo filtrado por un xénero
         return view('xenero', ['xeneroBuscado' => $xenero, 'produtos' => $produtosXenero, 'xeneros' => $xeneros]);
     }
 
@@ -75,12 +75,12 @@ class XeneroController extends Controller
             'descripcion' => 'required|string'
         ]);
         if($validated) { //no caso de ser válidos
-            $xenero = new Xenero;
+            $xenero = new Xenero; //buscamos o xénero e asignámoslle os valores
             $xenero->nome = $request->nome;
             $xenero->descripcion = $request->descripcion;
             $xenero->save();
         }
-        return route('/admin');
+        return view('admin');
     }
 
     /**

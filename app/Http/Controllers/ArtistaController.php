@@ -26,7 +26,7 @@ class ArtistaController extends Controller
      */
     public function create()
     {
-        return view('adminnovoartista');
+        return view('adminnovoartista'); //devolvemos a vista de crear novo artista
     }
 
     /**
@@ -80,7 +80,7 @@ class ArtistaController extends Controller
      */
 
     public function admin() {
-        $artistas = Artista::all();
+        $artistas = Artista::all(); //almacenamos todos os valores de artista e o devolvemos á vista
         return view('adminartistas', ['artistas' => $artistas]);
     }
 
@@ -104,14 +104,14 @@ class ArtistaController extends Controller
             'descripcion' => 'required|string',
         ]);
         if($validated) { //no caso de ser válidos
-            $artista = Artista::find($id); //buscamos o nodo con esa id
+            $artista = Artista::find($id); //buscamos o artista con esa id
             $nomefoto = $artista->foto; //recuperamos o valor do nome da imaxe
             if($request->hasfile('foto')){
                 $foto = $request->file('foto');
                 $nome = "artista" . $id;
                 $extension = $foto->guessExtension();
                 $nomefoto = "$nome.$extension"; //poñémoslle de nome o timestamp coa extensión
-                $foto->move(public_path('img/artista'),$nomefoto); //e movémola á carpeta de imaxes da entrada
+                $foto->move(public_path('img/artista'),$nomefoto); //e movémola á carpeta de imaxes de artista
             }
             DB::update('update artistas set nome=?, foto=?, descripcion=? where id="' . $id . '"',
                 [
@@ -119,7 +119,7 @@ class ArtistaController extends Controller
                     $nomefoto,
                     $request->descripcion,
                 ]);  //facemos a consulta preparada e pasámoslle os parámetros indicados
-            return redirect()->action([ArtistaController::class, 'admin']); //rediriximos á vista detallada do nodo co id indicado
+            return redirect()->action([ArtistaController::class, 'admin']); //rediriximos á vista detallada do admin
         }
         else {
 
@@ -135,7 +135,7 @@ class ArtistaController extends Controller
     public function destroy($id)
     {
         $artista = Artista::find($id);
-        $artista->delete();
-        return redirect()->action([ArtistaController::class, 'admin']); //rediriximos á vista detallada do nodo co id indicado
+        $artista->delete(); //buscamos o artista con esa id e eliminamos
+        return redirect()->action([ArtistaController::class, 'admin']); //rediriximos á vista detallada do admin
     }
 }

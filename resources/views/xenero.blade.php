@@ -26,7 +26,7 @@
                 <i class="bi bi-tags"></i> XÉNEROS
                 </div>
                 @foreach($xeneros as $xenero)
-                    <a href="/catalogo/{{$xenero->id}}"><button class="xenero blanco"><?php echo strtoupper($xenero->nome); ?></button></a>
+                    <a href="/catalogo/{{$xenero->id}}"><button class="xenero blanco my-1"><?php echo strtoupper($xenero->nome); ?></button></a>
                 @endforeach
         </div>
     </div>

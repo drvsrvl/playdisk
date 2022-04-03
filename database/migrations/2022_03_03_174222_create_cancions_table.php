@@ -16,7 +16,6 @@ class CreateCancionsTable extends Migration
         Schema::create('cancions', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('artistas');
             $table->string('duracion');
             $table->bigInteger('produto_id')->unsigned();
             $table->integer('numero_produto');

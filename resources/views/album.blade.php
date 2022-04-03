@@ -20,7 +20,7 @@
             <div class="tracklist">
                 @foreach($produto->cancions as $cancion)
                 <div class="cancion" id="cancion{{$cancion->id}}" onmouseover="play({{$cancion->id}});" onmouseout="dontplay({{$cancion->id}});"
-                    @if(Auth::user()) onclick="reproducir('album',{{$produto->id}},{{$cancion->id}})" @else onclick="showError()" @endif>
+                    @if(Auth::user()) onclick="reproducir({{$cancion->id}})" @else onclick="showError()" @endif>
                     <input type="hidden" id="playing{{$cancion->id}}" value="false">
                     <span class="play">
                         <h2 id="numCancion{{$cancion->id}}" class="numCancion show">{{$cancion->numero_produto}}</h2>

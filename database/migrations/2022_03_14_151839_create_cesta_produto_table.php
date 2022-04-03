@@ -27,7 +27,7 @@ class CreateCestaProdutoTable extends Migration
                 ->on('formato_produto')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreign('cesta')
+            $table->foreign('cesta_id')
                 ->references('id')
                 ->on('cestas')
                 ->onUpdate('cascade')

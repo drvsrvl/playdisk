@@ -9,8 +9,16 @@
         </div>
         <div class="seccions">
             <ul>
-                <a href="/catalogo"><li>Catálogo</li></a>
-            </ul>
+                <a href="/catalogo"><li>{{ __('messages.catalogo') }}</li></a>
+            
+            <div class="dropdown">
+                    <li>{{ __('messages.lingua') }} <i class="bi bi-caret-down-fill"></i></li>
+                    <div class="dropdownlingua">
+                        <a href="/lang/gl">Galego</a>
+                        <a href="/lang/en">English</a>
+                    </div>
+            </div>
+</ul>
         </div>
     </div>
     <div class="dereita mx-2" style="display:flex; align-items:center;">
@@ -38,12 +46,10 @@
             style="margin-top:3px; width:37px;height:37px;border:1px solid black;padding: 0 6px 0 6px;border-radius:50%;position:relative"
             onclick="window.location.href = '/cesta';">
             <h5 style="padding-top:5px;padding-left:1px"><i class="bi bi-cart-fill"></i></h5>
-            @if($contador != 0)
                 <div class="notificacionmenu" 
                     style="width:13px;height:13px;background-color:white;color:black;border:1px solid black;border-radius:50%;position:absolute;right:0;top:0;display:flex;justify-content:center;align-items:center">
                     <span style="font-size:9px" id="notificacionmenu">{{$contador}}</span>
                 </div>
-            @endif
         </div>
             <div class="dropdown mx-4">
                 <div class="nomeperfildropdown mt-1 pr-1" 
@@ -56,14 +62,14 @@
                 <div class="dropdownmenu">
                     <a href="/perfil/{{Auth::user()->perfil->id}}">Perfil</a>
                     <a href="/pedidos">Pedidos</a>
-                    <a href="/config/{{Auth::user()->perfil->id}}">Configuración</a>
+                    <a href="/config/{{Auth::user()->perfil->id}}">{{ __('messages.configuracion') }}</a>
                     @if(Auth::user()->perfil->rol == "admin")
                     <a href="/admin">Administrador</a>
                     @endif
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                            Saír
+                        {{ __('messages.sair') }}
                         </a>
                     </form>
                 </div>
