@@ -36,7 +36,7 @@ Route::get('/reproducir', [CancionController::class, 'reproducir']);
 //ruta de eliminar un comentario
 Route::get('/comentario/eliminar/{id}', [ComentarioController::class, 'destroy']);
 //inicio
-Route::get('/', [ProdutoController::class, 'inicio'])->middleware('lang');
+Route::get('/', [ProdutoController::class, 'inicio']);
 //buscador en grande do inicio
 Route::get('buscadorindex', [ProdutoController::class, 'buscadorindex']);
 //buscador pequeno do menú

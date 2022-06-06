@@ -7,6 +7,10 @@ return [
     'descricion' => 'Descrición',
     'listas' => 'Listas',
     'configuracion' => 'Configuración',
-    'sair' => 'Saír'
+    'sair' => 'Saír',
+    'admin' => 'Administrador',
+    'pedidos' => 'Pedidos',
+    'perfil' => 'Perfil',
+    'busca' => 'Busca aquí...',
 ];
 ?>

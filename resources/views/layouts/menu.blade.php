@@ -10,13 +10,6 @@
         <div class="seccions">
             <ul>
                 <a href="/catalogo"><li>{{ __('messages.catalogo') }}</li></a>
-            @foreach (array_keys(config('locale.languages')) as $lang)
-                @if ($lang != App::getLocale())
-                    <a href="{!! route('lang.swap', $lang) !!}">
-                            {!! $lang !!} <small>{!! $lang !!}</small>
-                    </a>
-                @endif
-            @endforeach
             <div class="dropdown">
                     <li>{{ __('messages.lingua') }} <i class="bi bi-caret-down-fill"></i></li>
                     <div class="dropdownlingua">
@@ -29,7 +22,7 @@
     </div>
     <div class="dereita mx-2" style="display:flex; align-items:center;">
         <div class="buscador mt-1" style="">
-            <input type="text" placeholder="Busca aquí" id="inputbuscadormenu">
+            <input type="text" placeholder="{{ __('messages.busca') }}" id="inputbuscadormenu">
             <div class="contedormenuresultados" id="contedormenuresultados">
                 
             </div>
@@ -66,11 +59,11 @@
                     </div><span class="mx-3" style="font-weight:500">{{Auth::user()->perfil->login}}</span> <i class="bi bi-caret-down-fill mx-1"></i>
                 </div>
                 <div class="dropdownmenu">
-                    <a href="/perfil/{{Auth::user()->perfil->id}}">Perfil</a>
-                    <a href="/pedidos">Pedidos</a>
+                    <a href="/perfil/{{Auth::user()->perfil->id}}">{{ __('messages.perfil') }}</a>
+                    <a href="/pedidos">{{ __('messages.pedidos') }}</a>
                     <a href="/config/{{Auth::user()->perfil->id}}">{{ __('messages.configuracion') }}</a>
                     @if(Auth::user()->perfil->rol == "admin")
-                    <a href="/admin">Administrador</a>
+                    <a href="/admin">{{ __('messages.admin') }}</a>
                     @endif
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

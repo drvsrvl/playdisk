@@ -7,6 +7,11 @@ return [
     'descricion' => 'Description',
     'listas' => 'Playlists',
     'configuracion' => 'Settings',
-    'sair' => 'Logout'
+    'sair' => 'Logout',
+    'admin' => 'Admin',
+    'pedidos' => 'Orders',
+    'perfil' => 'Profile',
+    'busca' => 'Search here...',
+    
 ];
 ?>
