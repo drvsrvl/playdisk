@@ -1337,7 +1337,6 @@ div.pepaxina h2 {
 
 }
 
-<<<<<<< HEAD
 @media (max-width: 800px) {
     div.infoalbum {
         display:block;
@@ -1361,9 +1360,6 @@ div.pepaxina h2 {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    }
-    div.tracklist {
-      
     }
 
     span.desc {
@@ -1407,5 +1403,3 @@ div.pepaxina h2 {
         width: 80% !important;
     }
 }
-=======
->>>>>>> a21b433f9d9119aeaaa43f5ad8548d8870affef4
