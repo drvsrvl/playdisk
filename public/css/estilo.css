@@ -67,6 +67,7 @@ div.identidade h1{
     margin-bottom: 20px;
     background: linear-gradient(190deg, rgb(0, 0, 0) 20%, rgb(119, 119, 119) 100%);
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 500;
 }
@@ -673,6 +674,7 @@ div.cancion {
     border: 1px solid black;
     transition: 0.2s ease;
     margin: 10px 0 10px 0;
+    max-height: 100px;
 }
 
 div.cancion.play {
@@ -850,6 +852,7 @@ h2.titulocabeceiracatalogo {
     font-weight: 600;
     background: linear-gradient(20deg, rgb(0, 0, 0) 20%, rgb(119, 119, 119) 100%);
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -1317,6 +1320,77 @@ div.pepaxina h2 {
     margin-left:25px;
     background: linear-gradient(180deg, rgb(228, 228, 228) 0%, rgb(85, 85, 85) 100%);
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
+}
+
+@media (max-width: 800px) {
+    div.infoalbum {
+        display:block;
+         height: 700px;
+    }
+    div.portada {
+        display: block;
+        width:100%;
+        height: 400px;
+        display:flex;
+        justify-content: space-around;
+    }
+    div.portada img {
+       
+        width:50%;
+    }
+    div.albumtexto {
+        display:block;
+        width: 100%;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    div.tracklist {
+      
+    }
+
+    span.desc {
+        display:block;
+        /* margin-top: 30px; */
+    }
+
+    div.informacionalbum {
+        display: block;
+        width:100%;
+        /* height: 400px; */
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    div.descripcion {
+        width:85%;
+    }
+    div.mercar {
+        width: 100%;
+        display:flex;
+        justify-content: center;
+    }
+
+    div.mercar h2 {
+        margin-left: 50px;
+    }
+    div.mercar table{
+        width:80%;
+        
+        margin: 0px;
+    }
+    
+    div.comentarios {
+        width: 80%;
+    }
+
+    .comentariosvista {
+        width: 80% !important;
+    }
 }

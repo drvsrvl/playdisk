@@ -88,7 +88,7 @@
         <p class="text-center"><a href="/login">Inicia sesión</a> ou <a href="/register">rexístrate</a> para deixar un comentario</p>
         @endif
     </div>
-        <div style="width:60%;margin:0 auto" class="pb-5">
+        <div style="width:60%;margin:0 auto" class="pb-5 comentariosvista" >
             <div style="width:100%;" id="novoComentario"></div>
         @foreach($produto->comentarios->sortByDesc('data') as $comentario)
             <div style="display:flex;align-items:center;width:100%;" class="py-2" 
