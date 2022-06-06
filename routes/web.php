@@ -22,7 +22,9 @@ use App\Http\Controllers\LocalizationController;
 |
 */
 //ruta de localización
-Route::get('/lang/{locale}', [LocalizationController::class, 'index'])->middleware('lang');
+// Route::get('/lang/{locale}', [LocalizationController::class, 'index'])->middleware('lang');
+Route::get('lang/{locale}', [App\Http\Controllers\LocalizationController::class, 'index']);
+
 //ruta de vista detalle do álbum
 Route::get('/album/{id}', [ProdutoController::class, 'show']);
 //ruta post da vista detalle de álbum para enviar un comentario
