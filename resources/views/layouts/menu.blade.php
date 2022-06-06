@@ -10,7 +10,13 @@
         <div class="seccions">
             <ul>
                 <a href="/catalogo"><li>{{ __('messages.catalogo') }}</li></a>
-            
+            @foreach (array_keys(config('locale.languages')) as $lang)
+                @if ($lang != App::getLocale())
+                    <a href="{!! route('lang.swap', $lang) !!}">
+                            {!! $lang !!} <small>{!! $lang !!}</small>
+                    </a>
+                @endif
+            @endforeach
             <div class="dropdown">
                     <li>{{ __('messages.lingua') }} <i class="bi bi-caret-down-fill"></i></li>
                     <div class="dropdownlingua">

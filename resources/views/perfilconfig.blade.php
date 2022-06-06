@@ -36,6 +36,8 @@
                     width="100%"
                     cols="50"
                     name="descripcion"
+                    onblur="validaDescripcion()"
+                    id="descripcion"
                 >{{$perfil->descripcion}}</textarea>
             </div>
             <div class="my-5" style="display:flex;align-items:center;justify-content:center;width:100%;flex-direction:row">
@@ -53,10 +55,13 @@
                     type="submit"
                     style="padding:10px 15px 10px 15px;background-color:black;color:white;border-radius:20px;border:1px solid grey"
                     name="enviar"
+                    id="enviarboton"
                 >Enviar</button>
             </div>
         </form>
     </div>
+
+    <div id="erroTexto" class="errors text-center py-2"></div>
         @if(count($errors) > 0)
             <div class="errors text-center py-2">
                 <ul>
@@ -69,5 +74,23 @@
 </div>
 <a href="/perfil/eliminar/{{$perfil->id}}" class="text-center"><h5 class="divconfig rojo">Eliminar tu cuenta en PLAYDISK</h5></a>
 <br/>
+
+
+<script>
+
+
+const enviar = document.getElementById('enviarboton');
+enviar.disabled = true;
+function validaDescripcion() {
+    valorTexto = document.getElementById('descripcion').value;
+    regEx = /[a-zA-Z1-9]{10}/;
+    if (!regEx.test(valorTexto)) {
+        document.getElementById('erroTexto').innerHTML = "O texto debe ter, polo menos, 10 caracteres";
+        return false;
+    }
+    enviar.disabled = false;
+}
+
+</script>
 
 @stop

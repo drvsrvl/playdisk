@@ -18,6 +18,7 @@
         @include('layouts.menu')
         @include('layouts.corpo')
         @include('layouts.pe')
+        @include('avisoCookies')
         <!-- JavaScript -->
         <script src="/js/animacion.js"></script>
         <!--<script src="/cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>-->

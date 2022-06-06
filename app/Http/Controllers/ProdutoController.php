@@ -21,6 +21,7 @@ class ProdutoController extends Controller
     {
         $produtos = Produto::orderby('data','desc')->get();
         $xeneros = Xenero::all();
+        session(['locale' => '123456']);
         return view('catalogo', ['produtos' => $produtos, 'xeneros' => $xeneros]);
     }
 
