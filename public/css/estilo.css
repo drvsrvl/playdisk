@@ -910,12 +910,24 @@ div.albumescatalogo {
 
 div.albumescatalogo div.fichaalbum {
     width:20%;
+    min-width:150px;
 }
 
 div.etiquetascatalogo {
     padding:20px;
     width:20%;
 }
+    /*Responsividade a móvil */
+
+    @media (max-width: 900px) {
+        div.albumescatalogo {
+            width:100%;
+        }
+        div.etiquetascatalogo {
+            width: 100%;
+            float:left;
+        }
+    }
 
 
 /* Estilos de artista */
@@ -1325,6 +1337,7 @@ div.pepaxina h2 {
 
 }
 
+<<<<<<< HEAD
 @media (max-width: 800px) {
     div.infoalbum {
         display:block;
@@ -1394,3 +1407,5 @@ div.pepaxina h2 {
         width: 80% !important;
     }
 }
+=======
+>>>>>>> a21b433f9d9119aeaaa43f5ad8548d8870affef4
