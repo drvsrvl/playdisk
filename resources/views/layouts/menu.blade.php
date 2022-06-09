@@ -19,6 +19,9 @@
             </div>
 </ul>
         </div>
+        <div class="dropdown-icon" onclick="menuResponsive();">
+            <i class="dropdown-icon bi bi-list"></i>
+        </div>
     </div>
     <div class="dereita mx-2" style="display:flex; align-items:center;">
         <div class="buscador mt-1" style="">
@@ -74,6 +77,28 @@
                 </div>
             </div>
         @endif
+       
+    </div>
+    <div class="menuresponsive" id="menu-responsive">
+            <a href="/">INICIO</a>
+            <a href="/catalogo">CATÁLOGO</a>
+            <a href="/cesta">CESTA</a>
+            @if(!Auth::user())
+            <a href="/login">LOGIN</a>
+            @else
+            <a href="/perfil/{{Auth::user()->perfil->id}}">PERFIL</a>
+            <a href="/config/{{Auth::user()->perfil->id}}">CONFIGURACIÓN</a>
+            <a href="/pedidos">PEDIDOS</a>
+                @if(Auth::user()->perfil->rol == "admin")
+                    <a href="/admin">ADMINISTRADOR</a>
+                @endif
+                <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                        SAÍR
+                        </a>
+                </form>
+             @endif
     </div>
     <script>
         $(document).ready(function() {

@@ -133,6 +133,15 @@ function closereproductor(id){
   document.getElementById("pepaxina").style.height = "50px";
 }
 
+function menuResponsive() {
+  const menu = document.querySelector("#menu-responsive");
+  if(menu.classList.contains("show")) {
+    menu.classList.remove("show");
+  } else {
+    menu.classList.add("show");
+  }
+}
+
 
 
 /*audio.on("ended", () => {
